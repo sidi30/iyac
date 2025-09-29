@@ -1,0 +1,110 @@
+<div class="home-page fade-in">
+  <!-- Hero Section avec l'article principal -->
+  <section class="hero-section bg-light py-5 slide-up" *ngIf="featuredArticles$ | async as featured">
+    <div class="container">
+      <div class="row" *ngIf="featured.length > 0">
+        <div class="col-lg-8">
+          <app-article-card
+            [article]="featured[0]"
+            [isHorizontal]="true"
+            class="featured-article">
+          </app-article-card>
+        </div>
+        <div class="col-lg-4">
+          <div class="sidebar-content slide-up" style="animation-delay: 0.2s;">
+            <h4 class="sidebar-title">À la Une</h4>
+            <div class="trending-articles">
+              <div class="trending-item border-bottom pb-3 mb-3" *ngFor="let article of (articles$ | async)?.slice(1, 4); let i = index" 
+                   [style.animation-delay]="(0.3 + i * 0.1) + 's'">
+                <h6 class="mb-1">
+                  <a [routerLink]="['/article', article.id]" class="text-decoration-none text-dark">
+                    {{ article.title }}
+                  </a>
+                </h6>
+                <small class="text-muted">
+                  <i class="fas fa-calendar me-1"></i>
+                  {{ article.publishDate | date:'dd/MM/yyyy' }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section des derniers articles -->
+  <section class="articles-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-header d-flex justify-content-between align-items-center mb-4">
+            <h3 class="section-title">Derniers Articles</h3>
+            <div class="category-filters">
+              <button class="btn btn-outline-secondary btn-sm me-2 active">Tous</button>
+              <button class="btn btn-outline-secondary btn-sm me-2">Justice</button>
+              <button class="btn btn-outline-secondary btn-sm me-2">Politique</button>
+              <button class="btn btn-outline-secondary btn-sm">Société</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="articles$ | async as articles">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let article of articles; let i = index" 
+             [style.animation-delay]="(i * 0.1) + 's'">
+          <app-article-card [article]="article"></app-article-card>
+        </div>
+      </div>
+
+      <!-- Message si aucun article -->
+      <div class="row" *ngIf="(articles$ | async)?.length === 0">
+        <div class="col-12 text-center py-5">
+          <div class="no-articles">
+            <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+            <h5 class="text-muted">Aucun article disponible pour le moment</h5>
+            <p class="text-muted">Revenez bientôt pour découvrir nos dernières actualités.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Newsletter -->
+  <section class="newsletter-section bg-primary text-white py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h3 class="mb-3">Restez Informé</h3>
+          <p class="mb-4">Inscrivez-vous à notre newsletter pour recevoir les dernières actualités et analyses directement dans votre boîte mail.</p>
+          <app-newsletter-signup></app-newsletter-signup>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Médias -->
+  <section class="media-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <h3 class="section-title">Contenus Multimédias</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let media of mediaCards; let i = index" 
+             [style.animation-delay]="(i * 0.2) + 's'">
+          <div class="media-card slide-up">
+            <div class="media-icon text-center py-4">
+              <i [class]="media.icon + ' fa-3x text-primary mb-3'"></i>
+              <h5>{{ media.title }}</h5>
+              <p class="text-muted">{{ media.description }}</p>
+              <a [routerLink]="media.link" class="btn btn-outline-primary">{{ media.buttonText }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

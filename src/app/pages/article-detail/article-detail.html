@@ -1,0 +1,192 @@
+<div class="article-detail-page" *ngIf="article$ | async as article; else articleNotFound">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="bg-light py-2">
+    <div class="container">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+          <a routerLink="/" class="text-decoration-none">Accueil</a>
+        </li>
+        <li class="breadcrumb-item">
+          <span class="badge bg-primary">{{ article.category }}</span>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{ article.title | slice:0:50 }}...</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Article Header -->
+  <section class="article-header py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <!-- Indicateur article urgent -->
+          <div class="mb-3" *ngIf="article.isBreaking">
+            <span class="badge bg-danger fs-6">
+              <i class="fas fa-bolt me-2"></i>
+              ACTUALITÉ URGENTE
+            </span>
+          </div>
+
+          <!-- Titre principal -->
+          <h1 class="article-title display-5 mb-4">{{ article.title }}</h1>
+
+          <!-- Meta informations -->
+          <div class="article-meta row align-items-center mb-4 pb-4 border-bottom">
+            <div class="col-md-8">
+              <div class="author-info">
+                <strong class="text-primary">{{ article.author }}</strong>
+                <div class="text-muted mt-1">
+                  <i class="fas fa-calendar me-2"></i>
+                  Publié le {{ article.publishDate | date:'dd MMMM yyyy':'':'fr' }}
+                  <span class="ms-3">
+                    <i class="fas fa-clock me-1"></i>
+                    {{ article.readTime }} min de lecture
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+              <div class="share-buttons">
+                <span class="text-muted me-2">Partager :</span>
+                <button
+                  class="btn btn-outline-primary btn-sm me-1"
+                  (click)="shareArticle('facebook', article)"
+                  title="Partager sur Facebook">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+                <button
+                  class="btn btn-outline-info btn-sm me-1"
+                  (click)="shareArticle('twitter', article)"
+                  title="Partager sur Twitter">
+                  <i class="fab fa-twitter"></i>
+                </button>
+                <button
+                  class="btn btn-outline-success btn-sm me-1"
+                  (click)="shareArticle('whatsapp', article)"
+                  title="Partager sur WhatsApp">
+                  <i class="fab fa-whatsapp"></i>
+                </button>
+                <button
+                  class="btn btn-outline-secondary btn-sm"
+                  (click)="printArticle()"
+                  title="Imprimer l'article">
+                  <i class="fas fa-print"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tags -->
+          <div class="article-tags mb-4" *ngIf="article.tags?.length">
+            <span class="text-muted me-2">Mots-clés :</span>
+            <span class="badge bg-light text-dark me-2" *ngFor="let tag of article.tags">
+              {{ tag }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image d'article si disponible -->
+  <section class="article-image" *ngIf="article.imageUrl">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <img [src]="article.imageUrl" [alt]="article.title" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu de l'article -->
+  <section class="article-content py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="content-wrapper">
+            <!-- Extrait en introduction -->
+            <div class="article-excerpt alert alert-light border-start border-primary border-4 mb-4">
+              <strong>{{ article.excerpt }}</strong>
+            </div>
+
+            <!-- Contenu principal -->
+            <div class="article-text" [innerHTML]="article.content | slice:0:5000"></div>
+
+            <!-- Signature de l'article -->
+            <div class="article-signature mt-5 pt-4 border-top">
+              <div class="text-end">
+                <em class="text-muted">{{ article.author }}</em>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar avec articles connexes -->
+        <div class="col-lg-4">
+          <div class="sidebar-content">
+            <div class="related-articles">
+              <h5 class="sidebar-title">Articles Connexes</h5>
+              <div class="related-item mb-3 pb-3 border-bottom"
+                   *ngFor="let related of (relatedArticles$ | async)?.slice(0, 3)">
+                <h6 class="mb-1">
+                  <a [routerLink]="['/article', related.id]" class="text-decoration-none text-dark">
+                    {{ related.title }}
+                  </a>
+                </h6>
+                <small class="text-muted">
+                  <i class="fas fa-calendar me-1"></i>
+                  {{ related.publishDate | date:'dd/MM/yyyy' }}
+                </small>
+              </div>
+            </div>
+
+            <!-- Newsletter signup -->
+            <div class="newsletter-widget bg-primary text-white p-4 rounded mt-4">
+              <h6 class="text-white mb-3">Restez informé</h6>
+              <p class="small mb-3">Recevez nos dernières actualités par email</p>
+              <a href="#newsletter" class="btn btn-light btn-sm">S'abonner</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation vers articles précédent/suivant -->
+  <section class="article-navigation bg-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <a routerLink="/" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>
+            Retour aux articles
+          </a>
+        </div>
+        <div class="col-6 text-end">
+          <button class="btn btn-primary" (click)="shareArticle('facebook', article)">
+            <i class="fas fa-share me-2"></i>
+            Partager cet article
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Template si article non trouvé -->
+<ng-template #articleNotFound>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+        <h3>Article non trouvé</h3>
+        <p class="text-muted mb-4">L'article que vous recherchez n'existe pas ou a été supprimé.</p>
+        <a routerLink="/" class="btn btn-primary">
+          <i class="fas fa-home me-2"></i>
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-template>

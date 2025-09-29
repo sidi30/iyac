@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm" [class.scrolled]="isScrolled">
+  <div class="container">
+    <!-- Logo et titre du journal -->
+    <a class="navbar-brand" routerLink="/">
+      <h2 class="journal-title mb-0">Liberté IYAC</h2>
+      <small class="text-muted">Voix Unies pour la Justice</small>
+    </a>
+
+    <!-- Bouton menu mobile -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      [class.collapsed]="!isMenuOpen"
+      (click)="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu de navigation -->
+    <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isMenuOpen">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            Accueil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/videos" routerLinkActive="active">
+            Vidéos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/podcasts" routerLinkActive="active">
+            Podcasts
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/documents" routerLinkActive="active">
+            Documents
+          </a>
+        </li>
+      </ul>
+
+      <!-- Boutons d'action -->
+      <div class="d-flex align-items-center gap-2">
+        <!-- Bouton Dark Mode -->
+        <button 
+          class="btn btn-outline-secondary btn-sm theme-toggle" 
+          (click)="toggleTheme()"
+          [title]="isDarkMode ? 'Mode clair' : 'Mode sombre'">
+          <i [class]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+        </button>
+        
+        <!-- Bouton newsletter -->
+        <button class="btn btn-outline-primary btn-sm" (click)="openNewsletterModal()">
+          <i class="fas fa-envelope me-1"></i>
+          Newsletter
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Barre d'actualités urgentes -->
+<app-breaking-news></app-breaking-news>

@@ -1,0 +1,115 @@
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.article-meta {
+  font-size: 0.95rem;
+}
+
+.author-info strong {
+  font-size: 1.1rem;
+}
+
+.share-buttons .btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-excerpt {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  background: rgba(var(--primary-color), 0.05) !important;
+}
+
+.article-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: justify;
+  color: var(--text-dark);
+}
+
+.article-text p {
+  margin-bottom: 1.5rem;
+}
+
+.article-text p:first-letter {
+  font-size: 3rem;
+  font-weight: bold;
+  float: left;
+  line-height: 1;
+  margin-right: 8px;
+  margin-top: 4px;
+  color: var(--primary-color);
+  font-family: 'Playfair Display', serif;
+}
+
+.sidebar-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 2rem;
+}
+
+.sidebar-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.related-item h6 a:hover {
+  color: var(--accent-color) !important;
+}
+
+.newsletter-widget {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+}
+
+.article-signature {
+  font-style: italic;
+  color: var(--text-light);
+}
+
+@media print {
+  .share-buttons,
+  .article-navigation,
+  .sidebar-content {
+    display: none !important;
+  }
+
+  .article-text {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 2rem !important;
+  }
+
+  .article-meta {
+    flex-direction: column;
+    text-align: center !important;
+  }
+
+  .share-buttons {
+    margin-top: 1rem;
+    text-align: center !important;
+  }
+
+  .article-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
