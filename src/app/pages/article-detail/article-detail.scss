@@ -80,6 +80,73 @@
   color: var(--text-light);
 }
 
+/* Widget Leader dans la sidebar */
+.leader-widget {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-normal);
+}
+
+.leader-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.leader-mini-showcase {
+  text-align: center;
+}
+
+.leader-image-mini {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.leader-image-mini img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.leader-name {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.leader-role {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.leader-quote-mini {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-medium);
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+/* Mode sombre pour le widget leader */
+.dark-theme .leader-widget {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+.dark-theme .leader-name {
+  color: var(--primary-light);
+}
+
+.dark-theme .leader-role {
+  color: var(--text-light);
+}
+
+.dark-theme .leader-quote-mini {
+  color: var(--text-medium);
+}
+
 @media print {
   .share-buttons,
   .article-navigation,

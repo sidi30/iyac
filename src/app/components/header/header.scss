@@ -12,11 +12,6 @@
 
 .navbar-brand {
   text-decoration: none;
-  transition: transform var(--transition-normal);
-}
-
-.navbar-brand:hover {
-  transform: scale(1.02);
 }
 
 .navbar-brand h2 {
@@ -116,17 +111,15 @@
 .theme-toggle:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
-  transform: scale(1.1);
   box-shadow: var(--shadow-sm);
 }
 
 .theme-toggle i {
   font-size: 0.9rem;
-  transition: transform var(--transition-normal);
 }
 
 .theme-toggle:hover i {
-  transform: rotate(180deg);
+  /* Pas d'animation */
 }
 
 /* Mode sombre pour les petits textes du header */

@@ -1,0 +1,79 @@
+<!-- Composant pour afficher les images du leader IYAC -->
+<div class="leader-showcase" *ngIf="showLeaderImages">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Titre de la section -->
+        <div class="text-center mb-4">
+          <h3 class="leader-title">
+            <i class="fas fa-user-tie me-2"></i>
+            IYAC Ibrahim Yacouba
+          </h3>
+          <p class="leader-subtitle text-muted">
+            Leader et Porte-parole de Liberté IYAC
+          </p>
+        </div>
+
+        <!-- Galerie d'images -->
+        <div class="leader-gallery">
+          <div class="row g-4">
+            <!-- Image principale -->
+            <div class="col-lg-6">
+              <div class="leader-image-card featured">
+                <img src="/iyac.jpg" alt="IYAC Ibrahim Yacouba - Portrait officiel" class="img-fluid rounded-3 shadow-lg">
+                <div class="image-overlay">
+                  <div class="overlay-content">
+                    <h5>Portrait Officiel</h5>
+                    <p>IYAC Ibrahim Yacouba</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Images secondaires -->
+            <div class="col-lg-6">
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="leader-image-card">
+                    <img src="/iyac2.jpg" alt="IYAC Ibrahim Yacouba - En action" class="img-fluid rounded-3 shadow">
+                    <div class="image-overlay">
+                      <div class="overlay-content">
+                        <h6>En Action</h6>
+                        <p>Leadership et Engagement</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="leader-image-card">
+                    <img src="/iyac3.jpg" alt="IYAC Ibrahim Yacouba - Avec la communauté" class="img-fluid rounded-3 shadow">
+                    <div class="image-overlay">
+                      <div class="overlay-content">
+                        <h6>Avec la Communauté</h6>
+                        <p>Proximité et Écoute</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citation inspirante -->
+        <div class="leader-quote mt-5">
+          <blockquote class="blockquote text-center">
+            <p class="mb-0">
+              <i class="fas fa-quote-left text-primary me-2"></i>
+              "La liberté et la justice ne sont pas des privilèges, mais des droits fondamentaux de chaque citoyen."
+              <i class="fas fa-quote-right text-primary ms-2"></i>
+            </p>
+            <footer class="blockquote-footer mt-3">
+              <cite title="Source Title">IYAC Ibrahim Yacouba</cite>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

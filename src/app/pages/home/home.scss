@@ -1,8 +1,8 @@
-c/* Hero Section moderne */
+c/* Hero Section moderne avec animations */
 .hero-section {
-  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary), var(--bg-accent));
   border-bottom: 4px solid transparent;
-  border-image: linear-gradient(90deg, var(--primary-color), var(--accent-color)) 1;
+  border-image: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-light)) 1;
   position: relative;
   overflow: hidden;
 }
@@ -17,6 +17,12 @@ c/* Hero Section moderne */
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
   opacity: 0.3;
   pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
 }
 
 .featured-article {
@@ -108,14 +114,31 @@ c/* Hero Section moderne */
 
 .trending-item {
   transition: all var(--transition-normal);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 0.75rem;
   margin-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.trending-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+  transition: left var(--transition-normal);
 }
 
 .trending-item:hover {
   background: var(--bg-secondary);
-  transform: translateX(8px);
+  box-shadow: var(--shadow-md);
+}
+
+.trending-item:hover::before {
+  left: 100%;
 }
 
 .trending-item h6 a {
@@ -204,15 +227,16 @@ c/* Hero Section moderne */
   pointer-events: none;
 }
 
-/* Cartes média */
+/* Cartes média avec animations améliorées */
 .media-card {
   background: var(--bg-primary);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   border: 1px solid var(--border-color);
   overflow: hidden;
   position: relative;
+  backdrop-filter: blur(10px);
 }
 
 .media-card::before {
@@ -222,15 +246,15 @@ c/* Hero Section moderne */
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(30, 64, 175, 0.05), rgba(5, 150, 105, 0.05));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(16, 185, 129, 0.08));
   opacity: 0;
   transition: opacity var(--transition-normal);
   pointer-events: none;
+  border-radius: 20px;
 }
 
 .media-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-xl);
+  box-shadow: var(--shadow-2xl), 0 0 30px rgba(37, 99, 235, 0.2);
   border-color: var(--primary-light);
 }
 
@@ -239,15 +263,30 @@ c/* Hero Section moderne */
 }
 
 .media-icon {
-  transition: all var(--transition-normal);
-}
-
-.media-card:hover .media-icon {
-  transform: scale(1.05);
+  position: relative;
 }
 
 .media-card:hover .media-icon i {
   color: var(--primary-color) !important;
+  filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.5));
+}
+
+.media-card:hover .media-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
 }
 
 /* État vide */
