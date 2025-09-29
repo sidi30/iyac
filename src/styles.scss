@@ -587,6 +587,113 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
   background: rgba(17, 24, 39, 0.98);
 }
 
+/* Correction des titres en mode sombre */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme h6 {
+  color: var(--text-dark) !important;
+}
+
+.dark-theme .card-title {
+  color: var(--text-dark) !important;
+}
+
+.dark-theme .section-title {
+  color: var(--primary-light) !important;
+}
+
+.dark-theme .sidebar-title {
+  color: var(--primary-light) !important;
+}
+
+.dark-theme .journal-title {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark-theme .trending-item h6 a {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .trending-item h6 a:hover {
+  color: var(--primary-light) !important;
+}
+
+/* Correction des petits textes en mode sombre */
+.dark-theme .card-text {
+  color: var(--text-medium) !important;
+}
+
+.dark-theme .article-content {
+  color: var(--text-medium) !important;
+}
+
+.dark-theme .article-content p {
+  color: var(--text-medium) !important;
+}
+
+.dark-theme .article-meta {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .article-meta .author {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .article-meta .date {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .text-muted {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .text-light {
+  color: var(--text-medium) !important;
+}
+
+.dark-theme .category-badge {
+  color: var(--text-dark) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark-theme .navbar-brand small {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .footer-description {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark-theme .footer-mission {
+  color: var(--accent-light) !important;
+}
+
+.dark-theme .contact-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark-theme .contact-item:hover {
+  color: white !important;
+}
+
+.dark-theme .copyright {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dark-theme .footer-link-small {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dark-theme .footer-link-small:hover {
+  color: white !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: #111827;

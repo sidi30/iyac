@@ -69,6 +69,32 @@ c/* Hero Section moderne */
   position: relative;
 }
 
+/* Mode sombre pour les titres de sidebar */
+.dark-theme .sidebar-title {
+  color: var(--primary-light) !important;
+}
+
+/* Mode sombre pour les petits textes */
+.dark-theme .trending-item small {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .media-card p {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .no-articles h5 {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .no-articles p {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .no-articles i {
+  color: var(--text-light) !important;
+}
+
 .sidebar-title::after {
   content: '';
   position: absolute;
@@ -110,6 +136,11 @@ c/* Hero Section moderne */
   position: relative;
   font-weight: 600;
   margin-bottom: 2rem;
+}
+
+/* Mode sombre pour les titres de section */
+.dark-theme .section-title {
+  color: var(--primary-light) !important;
 }
 
 .section-title::after {

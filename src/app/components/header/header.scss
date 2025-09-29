@@ -129,6 +129,19 @@
   transform: rotate(180deg);
 }
 
+/* Mode sombre pour les petits textes du header */
+.dark-theme .navbar-brand small {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .theme-toggle {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .theme-toggle:hover {
+  color: var(--primary-light) !important;
+}
+
 /* Bouton newsletter */
 .btn-outline-primary {
   border: 2px solid var(--primary-color);
