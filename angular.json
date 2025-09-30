@@ -33,7 +33,6 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ]
           },
@@ -68,7 +67,7 @@
               ],
               "outputHashing": "all",
               "baseHref": "/iyac/",
-              "optimization": false
+              "optimization": true
             },
             "development": {
               "optimization": false,
@@ -110,7 +109,6 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ]
           }
