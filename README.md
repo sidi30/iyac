@@ -22,42 +22,8 @@ Site web officiel de **Liberté IYAC** - Journal d'information et d'actualités 
 
 2. Configurez les DNS de votre domaine :
    ```
-   Type: CNAME
-   Name: www
-   Value: votre-username.github.io
-   
-   Type: A
-   Name: @
-   Value: 185.199.108.153
-   Value: 185.199.109.153
-   Value: 185.199.110.153
-   Value: 185.199.111.153
-   ```
-
 ### 3. Build pour Production
 
-```bash
-# Installer les dépendances
-npm install
-
-# Build pour liberteiyac.com (RECOMMANDÉ)
-npm run build:liberteiyac
-
-# OU Build pour GitHub Pages générique
-npm run build:github
-
-# OU Build pour production directe
-npm run build:production
-```
-
-### 4. Déploiement
-
-1. Commitez et poussez les fichiers :
-```bash
-git add .
-git commit -m "Deploy to liberteiyac.com"
-git push origin main
-```
 
 2. GitHub Pages va automatiquement déployer le contenu du dossier `/docs`
 
