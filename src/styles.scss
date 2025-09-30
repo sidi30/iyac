@@ -662,9 +662,9 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
   --bg-secondary: #1f2937;
   --bg-tertiary: #374151;
   --text-dark: #f9fafb;
-  --text-medium: #d1d5db;
-  --text-light: #9ca3af;
-  --text-muted: #6b7280;
+  --text-medium: #f3f4f6;
+  --text-light: #e5e7eb;
+  --text-muted: #d1d5db;
   --text-subtle: #4b5563;
   --border-color: #374151;
   --border-light: #4b5563;
@@ -765,11 +765,11 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
 }
 
 .dark-theme .text-muted {
-  color: var(--text-light) !important;
+  color: var(--text-muted) !important;
 }
 
 .dark-theme .text-light {
-  color: var(--text-medium) !important;
+  color: var(--text-light) !important;
 }
 
 /* Badges en mode sombre */
@@ -820,7 +820,7 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
 }
 
 .dark-theme .breadcrumb-item.active {
-  color: var(--text-medium) !important;
+  color: var(--text-light) !important;
 }
 
 .dark-theme .navbar-brand small {
@@ -861,9 +861,9 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
     --bg-secondary: #1f2937;
     --bg-tertiary: #374151;
     --text-dark: #f9fafb;
-    --text-medium: #d1d5db;
-    --text-light: #9ca3af;
-    --text-muted: #6b7280;
+    --text-medium: #f3f4f6;
+    --text-light: #e5e7eb;
+    --text-muted: #d1d5db;
     --text-subtle: #4b5563;
     --border-color: #374151;
     --border-light: #4b5563;
