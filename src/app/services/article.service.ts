@@ -16,6 +16,81 @@ export class ArticleService {
   private loadInitialData() {
     const articles: Article[] = [
       {
+        id: '4',
+        title: 'L\'esprit insoumis : résistance et détermination au Niger',
+        imageUrl: 'assets/insoumise.jpg',
+        content: `<div class="article-content-formatted">
+          <div class="article-intro">
+            <h3>La force de l'insoumission</h3>
+            <p class="lead">Face à l'injustice et à l'oppression, l'esprit insoumis du peuple nigérien continue de briller comme une lueur d'espoir dans les ténèbres.</p>
+          </div>
+
+          <div class="article-section">
+            <h4>Définition de l'insoumission</h4>
+            <p>L'insoumission n'est pas la rébellion aveugle, mais la <strong>détermination inébranlable</strong> à défendre la vérité et la justice.</p>
+            <p>C'est le refus de se plier face à l'injustice, même quand les forces semblent déséquilibrées.</p>
+          </div>
+
+          <div class="article-section">
+            <h4>L'insoumission au Niger</h4>
+            <p>Dans le contexte nigérien, l'insoumission se manifeste par :</p>
+            <ul>
+              <li><strong>La défense des droits</strong> : Refus d'accepter les violations des libertés fondamentales</li>
+              <li><strong>La résistance pacifique</strong> : Mobilisation citoyenne pour la justice</li>
+              <li><strong>La solidarité</strong> : Soutien inconditionnel aux victimes d'injustice</li>
+              <li><strong>La persévérance</strong> : Continuité du combat malgré les obstacles</li>
+            </ul>
+          </div>
+
+          <div class="article-section">
+            <h4>Cas d'Ibrahim Yacoubou</h4>
+            <p>L'arrestation d'Ibrahim Yacoubou illustre parfaitement la nécessité de l'insoumission.</p>
+            <p>Face à cette injustice, le peuple nigérien a choisi de ne pas se soumettre et de continuer le combat pour sa libération.</p>
+          </div>
+
+          <div class="article-section">
+            <h4>Les formes de résistance</h4>
+            <p>L'insoumission au Niger prend plusieurs formes :</p>
+            <ul>
+              <li><strong>Mobilisation citoyenne</strong> : Rassemblements et manifestations pacifiques</li>
+              <li><strong>Solidarité communautaire</strong> : Soutien aux familles des détenus</li>
+              <li><strong>Défense juridique</strong> : Accompagnement des procédures légales</li>
+              <li><strong>Sensibilisation</strong> : Information et éducation sur les droits</li>
+            </ul>
+          </div>
+
+          <div class="article-section">
+            <h4>L'importance de l'insoumission</h4>
+            <p>L'insoumission est essentielle pour :</p>
+            <ul>
+              <li>Préserver la démocratie et les libertés</li>
+              <li>Empêcher l'arbitraire et l'injustice</li>
+              <li>Maintenir l'espoir et la dignité</li>
+              <li>Construire un avenir meilleur</li>
+            </ul>
+          </div>
+
+          <div class="article-section">
+            <h4>Message d'espoir</h4>
+            <p>L'esprit insoumis du peuple nigérien est une force inébranlable qui ne peut être brisée par aucune oppression.</p>
+            <p>Ensemble, nous continuerons à résister et à lutter pour la justice, la liberté et la dignité.</p>
+          </div>
+
+          <div class="article-call-to-action">
+            <h4>Restons insoumis, restons unis !</h4>
+            <p><em>La liberté d'Ibrahim Yacoubou est notre cause commune.</em></p>
+          </div>
+        </div>`,
+        excerpt: 'Face à l\'injustice et à l\'oppression, l\'esprit insoumis du peuple nigérien continue de briller comme une lueur d\'espoir dans les ténèbres.',
+        author: 'Équipe Liberté IYAC',
+        publishDate: new Date('2025-10-01'),
+        category: 'Résistance',
+        tags: ['Insoumission', 'Résistance', 'Niger', 'Justice', 'Liberté', 'Ibrahim Yacoubou'],
+        isBreaking: true,
+        readTime: 4,
+        isHighlighted: true
+      },
+      {
         id: '1',
         title: 'Comité Justice et Liberté / Voix Unies pour Ibrahim Yacoubou',
         content: `<div class="article-content-formatted">
@@ -173,81 +248,6 @@ export class ArticleService {
         tags: ['Démocratie', 'Niger', 'Politique', 'Droits de l\'homme', 'Justice'],
         isBreaking: false,
         readTime: 5,
-        isHighlighted: true
-      },
-      {
-        id: '4',
-        title: 'L\'esprit insoumis : résistance et détermination au Niger',
-        imageUrl: 'assets/insoumise.jpg',
-        content: `<div class="article-content-formatted">
-          <div class="article-intro">
-            <h3>La force de l'insoumission</h3>
-            <p class="lead">Face à l'injustice et à l'oppression, l'esprit insoumis du peuple nigérien continue de briller comme une lueur d'espoir dans les ténèbres.</p>
-          </div>
-
-          <div class="article-section">
-            <h4>Définition de l'insoumission</h4>
-            <p>L'insoumission n'est pas la rébellion aveugle, mais la <strong>détermination inébranlable</strong> à défendre la vérité et la justice.</p>
-            <p>C'est le refus de se plier face à l'injustice, même quand les forces semblent déséquilibrées.</p>
-          </div>
-
-          <div class="article-section">
-            <h4>L'insoumission au Niger</h4>
-            <p>Dans le contexte nigérien, l'insoumission se manifeste par :</p>
-            <ul>
-              <li><strong>La défense des droits</strong> : Refus d'accepter les violations des libertés fondamentales</li>
-              <li><strong>La résistance pacifique</strong> : Mobilisation citoyenne pour la justice</li>
-              <li><strong>La solidarité</strong> : Soutien inconditionnel aux victimes d'injustice</li>
-              <li><strong>La persévérance</strong> : Continuité du combat malgré les obstacles</li>
-            </ul>
-          </div>
-
-          <div class="article-section">
-            <h4>Cas d'Ibrahim Yacoubou</h4>
-            <p>L'arrestation d'Ibrahim Yacoubou illustre parfaitement la nécessité de l'insoumission.</p>
-            <p>Face à cette injustice, le peuple nigérien a choisi de ne pas se soumettre et de continuer le combat pour sa libération.</p>
-          </div>
-
-          <div class="article-section">
-            <h4>Les formes de résistance</h4>
-            <p>L'insoumission au Niger prend plusieurs formes :</p>
-            <ul>
-              <li><strong>Mobilisation citoyenne</strong> : Rassemblements et manifestations pacifiques</li>
-              <li><strong>Solidarité communautaire</strong> : Soutien aux familles des détenus</li>
-              <li><strong>Défense juridique</strong> : Accompagnement des procédures légales</li>
-              <li><strong>Sensibilisation</strong> : Information et éducation sur les droits</li>
-            </ul>
-          </div>
-
-          <div class="article-section">
-            <h4>L'importance de l'insoumission</h4>
-            <p>L'insoumission est essentielle pour :</p>
-            <ul>
-              <li>Préserver la démocratie et les libertés</li>
-              <li>Empêcher l'arbitraire et l'injustice</li>
-              <li>Maintenir l'espoir et la dignité</li>
-              <li>Construire un avenir meilleur</li>
-            </ul>
-          </div>
-
-          <div class="article-section">
-            <h4>Message d'espoir</h4>
-            <p>L'esprit insoumis du peuple nigérien est une force inébranlable qui ne peut être brisée par aucune oppression.</p>
-            <p>Ensemble, nous continuerons à résister et à lutter pour la justice, la liberté et la dignité.</p>
-          </div>
-
-          <div class="article-call-to-action">
-            <h4>Restons insoumis, restons unis !</h4>
-            <p><em>La liberté d'Ibrahim Yacoubou est notre cause commune.</em></p>
-          </div>
-        </div>`,
-        excerpt: 'Face à l\'injustice et à l\'oppression, l\'esprit insoumis du peuple nigérien continue de briller comme une lueur d\'espoir dans les ténèbres.',
-        author: 'Équipe Liberté IYAC',
-        publishDate: new Date('2025-10-01'),
-        category: 'Résistance',
-        tags: ['Insoumission', 'Résistance', 'Niger', 'Justice', 'Liberté', 'Ibrahim Yacoubou'],
-        isBreaking: true,
-        readTime: 4,
         isHighlighted: true
       }
     ];
