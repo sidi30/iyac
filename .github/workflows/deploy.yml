@@ -38,14 +38,16 @@ jobs:
       - name: Build
         run: npm run build:prod
 
+      - name: Add .nojekyll file
+        run: touch ./dist/liberteiyac-journal/browser/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # ⚠️ adapte ce chemin si besoin
-          path: ./dist/liberteiyac-journal
+          path: ./dist/liberteiyac-journal/browser
 
       - name: Deploy to GitHub Pages
         id: deployment
