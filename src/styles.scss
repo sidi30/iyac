@@ -367,7 +367,8 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
   }
 
   .article-card:hover {
-    /* Pas d'animation */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
   }
 }
 
