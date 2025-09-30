@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (custom domain)
 
 on:
   push:
@@ -35,35 +35,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Build Angular 20 en tenant compte du type de Pages
-      # - Si CNAME présent -> domaine custom -> base-href "/"
-      # - Sinon -> Project Pages -> base-href "/<repo>/"
-      - name: Build for GitHub Pages
+      # Domaine custom => assets servis depuis la racine "/"
+      - name: Build (Angular 20)
+        run: npx ng build --configuration=production --base-href "/" --deploy-url "/"
+
+      # Prépare les fichiers SPA (Angular >=17 : dist/<app>/browser)
+      - name: Prepare SPA files
         run: |
-          REPO="${{ github.event.repository.name }}"
-          if [ -f "CNAME" ]; then
-            npx ng build --configuration=github-pages
-          else
-            npx ng build --configuration=github-pages
+          APP_DIR="dist/liberteiyac-journal/browser"
+          if [ ! -d "$APP_DIR" ]; then
+            echo "Build output not found at $APP_DIR"
+            exit 1
           fi
+          touch "$APP_DIR/.nojekyll"
+          cp "$APP_DIR/index.html" "$APP_DIR/404.html"
 
-      # Angular 17+ : livrables SPA sous dist/<app>/browser
-      - name: Add .nojekyll
-        run: |
-          mkdir -p ./dist/liberteiyac-journal/browser
-          touch ./dist/liberteiyac-journal/browser/.nojekyll
-
-      - name: Copy index.html to 404.html (SPA routing)
-        run: |
-          cp ./dist/liberteiyac-journal/browser/index.html ./dist/liberteiyac-journal/browser/404.html
+      # Inclure CNAME dans l'artifact pour le domaine custom
+      - name: Include CNAME
+        run: echo "liberteiyac.com" > dist/liberteiyac-journal/browser/CNAME
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact (Angular browser output)
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/liberteiyac-journal/browser
+          path: dist/liberteiyac-journal/browser
 
       - name: Deploy to GitHub Pages
         id: deployment
