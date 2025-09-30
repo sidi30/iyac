@@ -75,7 +75,7 @@ export class ArticleService {
       {
         id: '2',
         title: 'La prison de Filingue : un symbole de l\'injustice au Niger',
-        imageUrl: '/prison.avif',
+        imageUrl: 'assets/prison.avif',
         content: `<div class="article-content-formatted">
           <div class="article-intro">
             <h3>Filingue : Centre de détention controversé</h3>
@@ -125,7 +125,7 @@ export class ArticleService {
       {
         id: '3',
         title: 'État de la démocratie au Niger : défis et perspectives',
-        imageUrl: '/democratie.jpg',
+        imageUrl: 'assets/democratie.jpg',
         content: `<div class="article-content-formatted">
           <div class="article-intro">
             <h3>La démocratie nigérienne en question</h3>
