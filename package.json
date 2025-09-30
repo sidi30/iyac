@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href /liberteiyac-journal/",
+    "deploy": "ng build --configuration production --base-href /liberteiyac-journal/ && npx angular-cli-ghpages --dir=dist/liberteiyac-journal",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
