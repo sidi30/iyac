@@ -82,6 +82,7 @@
               ],
               "outputHashing": "all",
               "baseHref": "/iyac/",
+              "deployUrl": "/iyac/",
               "optimization": true
             },
             "development": {
