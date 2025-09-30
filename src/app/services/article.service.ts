@@ -243,10 +243,10 @@ export class ArticleService {
         </div>`,
         excerpt: 'Face à l\'injustice et à l\'oppression, l\'esprit insoumis du peuple nigérien continue de briller comme une lueur d\'espoir dans les ténèbres.',
         author: 'Équipe Liberté IYAC',
-        publishDate: new Date('2025-09-30'),
+        publishDate: new Date('2025-10-01'),
         category: 'Résistance',
         tags: ['Insoumission', 'Résistance', 'Niger', 'Justice', 'Liberté', 'Ibrahim Yacoubou'],
-        isBreaking: false,
+        isBreaking: true,
         readTime: 4,
         isHighlighted: true
       }
@@ -255,6 +255,12 @@ export class ArticleService {
     const breakingNews: BreakingNews[] = [
       {
         id: '1',
+        title: 'L\'esprit insoumis : résistance et détermination au Niger',
+        timestamp: new Date(),
+        urgent: true
+      },
+      {
+        id: '2',
         title: 'Mobilisation pour la libération d\'Ibrahim Yacoubou continue',
         timestamp: new Date(),
         urgent: true
