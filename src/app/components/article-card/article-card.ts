@@ -17,9 +17,9 @@ export class ArticleCardComponent {
 
   // Images par défaut d'IYAC
   private defaultImages = [
-    '/iyac.jpg',
-    '/iyac2.jpg',
-    '/iyac3.jpg'
+    './assets/iyac.jpg',
+    './assets/iyac2.jpg',
+    './assets/iyac3.jpg'
   ];
 
   getDefaultImage(): string {
@@ -34,10 +34,10 @@ export class ArticleCardComponent {
     const title = this.article.title.toLowerCase();
     const content = this.article.content.toLowerCase();
     const author = this.article.author.toLowerCase();
-    
-    return leaderKeywords.some(keyword => 
-      title.includes(keyword) || 
-      content.includes(keyword) || 
+
+    return leaderKeywords.some(keyword =>
+      title.includes(keyword) ||
+      content.includes(keyword) ||
       author.includes(keyword)
     );
   }
