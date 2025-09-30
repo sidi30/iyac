@@ -4,6 +4,7 @@ import { ArticleDetailComponent } from './pages/article-detail/article-detail';
 import { PodcastsComponent } from './pages/podcasts/podcasts';
 import { VideosComponent } from './pages/videos/videos';
 import { DocumentsComponent } from './pages/documents/documents';
+import { ErrorComponent } from './pages/error/error';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'podcasts', component: PodcastsComponent },
   { path: 'videos', component: VideosComponent },
   { path: 'documents', component: DocumentsComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: 'error' }
 ];
