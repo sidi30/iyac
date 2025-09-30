@@ -8,7 +8,12 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error: any): void {
     console.error('Erreur globale:', error);
     
-    // Rediriger vers la page d'erreur pour toute erreur non gérée
-    this.router.navigate(['/error']);
+    // Ne rediriger que pour les erreurs critiques (erreurs de navigation, etc.)
+    // Pas pour les erreurs de composants individuels
+    if (error?.message?.includes('Navigation') || 
+        error?.message?.includes('Cannot resolve') ||
+        error?.message?.includes('Module not found')) {
+      this.router.navigate(['/error']);
+    }
   }
 }
