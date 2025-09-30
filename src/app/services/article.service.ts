@@ -75,7 +75,7 @@ export class ArticleService {
       {
         id: '2',
         title: 'La prison de Filingue : un symbole de l\'injustice au Niger',
-        imageUrl: '/iyac2.jpg',
+        imageUrl: '/prison.avif',
         content: `<div class="article-content-formatted">
           <div class="article-intro">
             <h3>Filingue : Centre de détention controversé</h3>
