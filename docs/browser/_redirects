@@ -1,0 +1,5 @@
+# Configuration pour GitHub Pages
+# Ce fichier aide à résoudre les problèmes de chemins d'images
+
+# Redirection pour les assets
+/assets/* /assets/:splat 200
