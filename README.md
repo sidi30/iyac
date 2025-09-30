@@ -1,59 +1,118 @@
-# LiberteiyacJournal
+# Liberté IYAC Journal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+Site web officiel de **Liberté IYAC** - Journal d'information et d'actualités du Niger
 
-## Development server
+🌐 **Site officiel** : [https://liberteiyac.com](https://liberteiyac.com)
 
-To start a local development server, run:
+## 🚀 Déploiement sur GitHub Pages avec Domaine Personnalisé
 
-```bash
-ng serve
-```
+### 1. Configuration du Repository GitHub
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Allez dans les **Settings** de votre repository GitHub
+2. Dans la section **Pages**, sélectionnez :
+   - **Source** : Deploy from a branch
+   - **Branch** : main
+   - **Folder** : /docs
 
-## Code scaffolding
+### 2. Configuration du Domaine Personnalisé
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Dans les **Settings** → **Pages**, ajoutez votre domaine personnalisé :
+   - **Custom domain** : `liberteiyac.com`
+   - Cochez **Enforce HTTPS**
 
-```bash
-ng generate component component-name
-```
+2. Configurez les DNS de votre domaine :
+   ```
+   Type: CNAME
+   Name: www
+   Value: votre-username.github.io
+   
+   Type: A
+   Name: @
+   Value: 185.199.108.153
+   Value: 185.199.109.153
+   Value: 185.199.110.153
+   Value: 185.199.111.153
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### 3. Build pour Production (Solution Same-Origin)
 
 ```bash
-ng test
+# Installer les dépendances
+npm install
+
+# Build pour liberteiyac.com avec Same-Origin (RECOMMANDÉ)
+npm run build:liberteiyac
+
+# OU Déploiement automatique complet
+npm run deploy:liberteiyac
+
+# OU Build pour GitHub Pages générique
+npm run build:github
 ```
 
-## Running end-to-end tests
+**Important** : Utilisez `--base-href="/"` et `--deploy-url="/"` pour éviter les problèmes CORS.
 
-For end-to-end (e2e) testing, run:
+### 4. Déploiement
+
+1. Commitez et poussez les fichiers :
+```bash
+git add .
+git commit -m "Deploy to liberteiyac.com"
+git push origin main
+```
+
+2. GitHub Pages va automatiquement déployer le contenu du dossier `/docs`
+
+### 5. Vérification
+
+- Votre site sera disponible à : **https://liberteiyac.com**
+- Les images d'IYAC s'afficheront correctement
+- Le domaine personnalisé sera actif
+
+## 📁 Structure des Images
+
+Les images d'IYAC Ibrahim Yacouba sont stockées dans :
+- `src/assets/iyac.jpg` - Portrait officiel
+- `src/assets/iyac2.jpg` - En action  
+- `src/assets/iyac3.jpg` - Avec la communauté
+
+Ces images sont automatiquement copiées dans le dossier `docs/assets/` lors du build.
+
+## 🛠️ Commandes Utiles
 
 ```bash
-ng e2e
+# Développement local
+npm start
+
+# Build de production
+npm run build
+
+# Build pour GitHub Pages générique
+npm run build:github
+
+# Build pour liberteiyac.com (RECOMMANDÉ)
+npm run build:liberteiyac
+
+# Build pour domaine personnalisé
+npm run build:production
+
+# Tests
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🔧 Configuration SEO
 
-## Additional Resources
+Le site est optimisé pour le référencement avec :
+- Meta tags Open Graph
+- Twitter Cards
+- Canonical URL
+- Description et mots-clés optimisés
+- Images d'IYAC pour le branding
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📞 Support
+
+Si vous rencontrez des problèmes avec le domaine :
+1. Vérifiez la configuration DNS
+2. Attendez 24-48h pour la propagation DNS
+3. Vérifiez que le certificat SSL est actif
+4. Contactez votre hébergeur de domaine si nécessaire

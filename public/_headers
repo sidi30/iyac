@@ -1,0 +1,11 @@
+# Configuration pour liberteiyac.com
+# Ce fichier aide à résoudre les problèmes CORS et de chemins
+
+# Redirection pour les assets
+/assets/* /assets/:splat 200
+
+# Headers CORS pour les ressources statiques
+/assets/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
