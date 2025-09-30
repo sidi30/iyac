@@ -42,9 +42,9 @@ jobs:
         run: |
           REPO="${{ github.event.repository.name }}"
           if [ -f "CNAME" ]; then
-            npx ng build --configuration=production --base-href "/" --deploy-url "/"
+            npx ng build --configuration=github-pages
           else
-            npx ng build --configuration=production --base-href "/$REPO/" --deploy-url "/$REPO/"
+            npx ng build --configuration=github-pages
           fi
 
       # Angular 17+ : livrables SPA sous dist/<app>/browser
