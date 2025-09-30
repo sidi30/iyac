@@ -34,21 +34,23 @@ Site web officiel de **Liberté IYAC** - Journal d'information et d'actualités 
    Value: 185.199.111.153
    ```
 
-### 3. Build pour Production
+### 3. Build pour Production (Solution Same-Origin)
 
 ```bash
 # Installer les dépendances
 npm install
 
-# Build pour liberteiyac.com (RECOMMANDÉ)
+# Build pour liberteiyac.com avec Same-Origin (RECOMMANDÉ)
 npm run build:liberteiyac
+
+# OU Déploiement automatique complet
+npm run deploy:liberteiyac
 
 # OU Build pour GitHub Pages générique
 npm run build:github
-
-# OU Build pour production directe
-npm run build:production
 ```
+
+**Important** : Utilisez `--base-href="/"` et `--deploy-url="/"` pour éviter les problèmes CORS.
 
 ### 4. Déploiement
 
