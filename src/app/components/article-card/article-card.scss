@@ -119,6 +119,11 @@
   background: rgba(255, 255, 255, 0.9) !important;
 }
 
+.dark-theme .leader-badge {
+  color: var(--text-dark) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
 .card-text {
   color: var(--text-medium);
   font-size: 0.9rem;

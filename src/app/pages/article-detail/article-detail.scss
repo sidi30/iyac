@@ -115,6 +115,29 @@
   color: var(--text-light);
 }
 
+/* Badges et petits détails en mode sombre */
+.dark-theme .article-meta small {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .article-tags .badge {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-light) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .breadcrumb-item {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .breadcrumb-item a {
+  color: var(--primary-light) !important;
+}
+
+.dark-theme .breadcrumb-item.active {
+  color: var(--text-medium) !important;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .article-content-formatted {

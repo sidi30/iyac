@@ -772,9 +772,55 @@ h6 { font-size: clamp(1rem, 1.25vw, 1.125rem); }
   color: var(--text-medium) !important;
 }
 
+/* Badges en mode sombre */
 .dark-theme .category-badge {
   color: var(--text-dark) !important;
   background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark-theme .badge {
+  color: var(--text-dark) !important;
+}
+
+.dark-theme .badge.bg-primary {
+  background: var(--primary-light) !important;
+  color: white !important;
+}
+
+.dark-theme .badge.bg-light {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--text-dark) !important;
+}
+
+.dark-theme .badge.bg-warning {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24) !important;
+  color: #000 !important;
+}
+
+.dark-theme .badge.bg-secondary {
+  background: var(--bg-tertiary) !important;
+  color: var(--text-light) !important;
+}
+
+/* Petits détails et métadonnées */
+.dark-theme small {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .article-meta small {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .breadcrumb-item {
+  color: var(--text-light) !important;
+}
+
+.dark-theme .breadcrumb-item a {
+  color: var(--primary-light) !important;
+}
+
+.dark-theme .breadcrumb-item.active {
+  color: var(--text-medium) !important;
 }
 
 .dark-theme .navbar-brand small {
