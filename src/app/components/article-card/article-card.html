@@ -1,8 +1,8 @@
 <div class="article-card h-100" [ngClass]="{'horizontal-card': isHorizontal}">
   <div class="card border-0 shadow-sm h-100">
     <!-- Image d'article si disponible -->
-    <div class="card-img-container" *ngIf="article.imageUrl || getDefaultImage()">
-      <img [src]="article.imageUrl || getDefaultImage()" class="card-img-top responsive-img" [alt]="article.title">
+    <div class="card-img-container" *ngIf="article.imageUrl || defaultImage">
+      <img [src]="article.imageUrl || defaultImage" class="card-img-top responsive-img" [alt]="article.title">
       <div class="category-badge">
         <span class="badge bg-primary">{{ article.category }}</span>
       </div>

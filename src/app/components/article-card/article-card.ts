@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Article } from '../../models/article.model';
@@ -10,10 +10,13 @@ import { Article } from '../../models/article.model';
   templateUrl: './article-card.html',
   styleUrls: ['./article-card.scss']
 })
-export class ArticleCardComponent {
+export class ArticleCardComponent implements OnInit {
   @Input() article!: Article;
   @Input() isHorizontal = false;
   @Input() showFullContent = false;
+
+  // Image par défaut déterminée une seule fois
+  defaultImage: string = '';
 
   // Images par défaut d'IYAC
   private defaultImages = [
@@ -22,10 +25,15 @@ export class ArticleCardComponent {
     '/iyac3.jpg'
   ];
 
-  getDefaultImage(): string {
-    // Retourne une image aléatoire d'IYAC si pas d'image spécifique
+  ngOnInit(): void {
+    // Détermine l'image par défaut une seule fois lors de l'initialisation
     const randomIndex = Math.floor(Math.random() * this.defaultImages.length);
-    return this.defaultImages[randomIndex];
+    this.defaultImage = this.defaultImages[randomIndex];
+  }
+
+  getDefaultImage(): string {
+    // Retourne l'image par défaut déterminée lors de l'initialisation
+    return this.defaultImage;
   }
 
   isLeaderArticle(): boolean {
