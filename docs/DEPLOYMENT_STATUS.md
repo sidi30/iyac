@@ -12,7 +12,7 @@
 - ✅ **Same-Origin** : Tous les fichiers servis depuis liberteiyac.com
 - ✅ **Pas d'URL absolue** : Plus de référence à sidi30.github.io
 - ✅ **404.html** : Créé pour les routes SPA
-- ✅ **CNAME** : liberteiyac.com configuré
+- ✅ **Domaine** : Configuré directement sur GitHub (CNAME/DNS)
 
 ## 🚀 Résultat Attendu
 - ❌ **AVANT** : `Access to script at 'https://sidi30.github.io/iyac/main-SBBO2XQG.js'`
