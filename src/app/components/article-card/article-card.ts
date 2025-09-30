@@ -20,9 +20,9 @@ export class ArticleCardComponent implements OnInit {
 
   // Images par défaut d'IYAC
   private defaultImages = [
-    '/iyac.jpg',
-    '/iyac2.jpg',
-    '/iyac3.jpg'
+    'assets/iyac.jpg',
+    'assets/iyac2.jpg',
+    'assets/iyac3.jpg'
   ];
 
   ngOnInit(): void {
