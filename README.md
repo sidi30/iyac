@@ -1,10 +1,12 @@
 # Liberté IYAC Journal
 
-Site web du journal Liberté IYAC - Voix Unies pour la Justice
+Site web officiel de **Liberté IYAC** - Journal d'information et d'actualités du Niger
 
-## Déploiement sur GitHub Pages
+🌐 **Site officiel** : [https://liberteiyac.com](https://liberteiyac.com)
 
-### 1. Configuration du Repository
+## 🚀 Déploiement sur GitHub Pages avec Domaine Personnalisé
+
+### 1. Configuration du Repository GitHub
 
 1. Allez dans les **Settings** de votre repository GitHub
 2. Dans la section **Pages**, sélectionnez :
@@ -12,33 +14,60 @@ Site web du journal Liberté IYAC - Voix Unies pour la Justice
    - **Branch** : main
    - **Folder** : /docs
 
-### 2. Build pour GitHub Pages
+### 2. Configuration du Domaine Personnalisé
+
+1. Dans les **Settings** → **Pages**, ajoutez votre domaine personnalisé :
+   - **Custom domain** : `liberteiyac.com`
+   - Cochez **Enforce HTTPS**
+
+2. Configurez les DNS de votre domaine :
+   ```
+   Type: CNAME
+   Name: www
+   Value: votre-username.github.io
+   
+   Type: A
+   Name: @
+   Value: 185.199.108.153
+   Value: 185.199.109.153
+   Value: 185.199.110.153
+   Value: 185.199.111.153
+   ```
+
+### 3. Build pour Production
 
 ```bash
 # Installer les dépendances
 npm install
 
-# Build spécialement pour GitHub Pages
+# Build pour liberteiyac.com (RECOMMANDÉ)
+npm run build:liberteiyac
+
+# OU Build pour GitHub Pages générique
 npm run build:github
+
+# OU Build pour production directe
+npm run build:production
 ```
 
-### 3. Déploiement
+### 4. Déploiement
 
 1. Commitez et poussez les fichiers :
 ```bash
 git add .
-git commit -m "Deploy to GitHub Pages"
+git commit -m "Deploy to liberteiyac.com"
 git push origin main
 ```
 
 2. GitHub Pages va automatiquement déployer le contenu du dossier `/docs`
 
-### 4. Vérification
+### 5. Vérification
 
-- Votre site sera disponible à : `https://votre-username.github.io/liberteiyac-journal`
-- Les images d'IYAC devraient maintenant s'afficher correctement
+- Votre site sera disponible à : **https://liberteiyac.com**
+- Les images d'IYAC s'afficheront correctement
+- Le domaine personnalisé sera actif
 
-## Structure des Images
+## 📁 Structure des Images
 
 Les images d'IYAC Ibrahim Yacouba sont stockées dans :
 - `src/assets/iyac.jpg` - Portrait officiel
@@ -47,7 +76,7 @@ Les images d'IYAC Ibrahim Yacouba sont stockées dans :
 
 Ces images sont automatiquement copiées dans le dossier `docs/assets/` lors du build.
 
-## Commandes Utiles
+## 🛠️ Commandes Utiles
 
 ```bash
 # Développement local
@@ -56,16 +85,32 @@ npm start
 # Build de production
 npm run build
 
-# Build pour GitHub Pages
+# Build pour GitHub Pages générique
 npm run build:github
+
+# Build pour liberteiyac.com (RECOMMANDÉ)
+npm run build:liberteiyac
+
+# Build pour domaine personnalisé
+npm run build:production
 
 # Tests
 npm test
 ```
 
-## Support
+## 🔧 Configuration SEO
 
-Si les images ne s'affichent toujours pas sur GitHub Pages :
-1. Vérifiez que le dossier `/docs` contient bien le dossier `/assets`
-2. Vérifiez que les chemins dans le code utilisent `./assets/` et non `/assets/`
-3. Attendez quelques minutes pour que GitHub Pages mette à jour le cache
+Le site est optimisé pour le référencement avec :
+- Meta tags Open Graph
+- Twitter Cards
+- Canonical URL
+- Description et mots-clés optimisés
+- Images d'IYAC pour le branding
+
+## 📞 Support
+
+Si vous rencontrez des problèmes avec le domaine :
+1. Vérifiez la configuration DNS
+2. Attendez 24-48h pour la propagation DNS
+3. Vérifiez que le certificat SSL est actif
+4. Contactez votre hébergeur de domaine si nécessaire

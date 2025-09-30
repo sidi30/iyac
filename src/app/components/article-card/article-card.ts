@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Article } from '../../models/article.model';
@@ -10,22 +10,31 @@ import { Article } from '../../models/article.model';
   templateUrl: './article-card.html',
   styleUrls: ['./article-card.scss']
 })
-export class ArticleCardComponent {
+export class ArticleCardComponent implements OnInit {
   @Input() article!: Article;
   @Input() isHorizontal = false;
   @Input() showFullContent = false;
 
-  // Images par défaut d'IYAC
-  private defaultImages = [
-    './assets/iyac.jpg',
-    './assets/iyac2.jpg',
-    './assets/iyac3.jpg'
-  ];
+  // Image par défaut fixe - toujours la même pour tous les composants
+  private static readonly DEFAULT_IMAGE = './assets/iyac.jpg';
+
+  ngOnInit(): void {
+    // Pas besoin de logique complexe, on utilise toujours la même image
+  }
 
   getDefaultImage(): string {
-    // Retourne une image aléatoire d'IYAC si pas d'image spécifique
-    const randomIndex = Math.floor(Math.random() * this.defaultImages.length);
-    return this.defaultImages[randomIndex];
+    // Utilise l'ID de l'article pour déterminer quelle image utiliser
+    // Cela garantit que chaque article aura toujours la même image
+    const images = ['./assets/iyac.jpg', './assets/iyac2.jpg', './assets/iyac3.jpg'];
+    
+    if (this.article.id && typeof this.article.id === 'number') {
+      // Utilise l'ID de l'article pour sélectionner l'image de manière déterministe
+      const index = this.article.id % images.length;
+      return images[index];
+    }
+    
+    // Fallback vers l'image principale si pas d'ID ou ID non numérique
+    return ArticleCardComponent.DEFAULT_IMAGE;
   }
 
   isLeaderArticle(): boolean {

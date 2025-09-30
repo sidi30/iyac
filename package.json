@@ -1,11 +1,15 @@
 {
   "name": "liberteiyac-journal",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Site web officiel de Liberté IYAC - Journal d'information et d'actualités du Niger",
+  "homepage": "https://liberteiyac.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:github": "ng build --base-href ./ --output-path docs",
+    "build:liberteiyac": "ng build --base-href https://liberteiyac.com/ --output-path docs",
+    "build:production": "ng build --base-href https://liberteiyac.com/ --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
