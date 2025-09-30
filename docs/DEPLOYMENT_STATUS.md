@@ -7,6 +7,7 @@
 - **Script Principal** : `/main.8a4cf293632617c8.js`
 - **CSS** : `/styles.ea86c70aaf68fe67.css`
 - **Runtime** : `/runtime.9da50db2f25c74d7.js`
+- **Commit** : a5077e4 (Simplified deployment)
 
 ## 🎯 Solution CORS Appliquée
 - ✅ **Same-Origin** : Tous les fichiers servis depuis liberteiyac.com
@@ -23,3 +24,6 @@
 2. Vider le cache navigateur (Ctrl+F5)
 3. Vérifier https://liberteiyac.com
 4. Confirmer que les images d'IYAC s'affichent
+
+## 🔄 Force Deploy - 2025-09-30 02:30
+**Déploiement forcé pour résoudre le problème CORS persistant**
