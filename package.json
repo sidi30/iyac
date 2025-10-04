@@ -9,7 +9,8 @@
     "build:ghpages": "ng build --configuration production --base-href /iyac/ --output-hashing=all --optimization=true --extract-licenses=true",
     "deploy": "ng build --configuration production --base-href /iyac/ && npx angular-cli-ghpages --dir=dist/liberteiyac-journal",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "generate-article": "node scripts/generate-article.js"
   },
   "prettier": {
     "printWidth": 100,
