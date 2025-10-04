@@ -1,6 +1,6 @@
 /* Header moderne avec glassmorphism et système de thème cohérent */
 .navbar {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: var(--bg-primary) !important;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color) !important;
   box-shadow: var(--shadow-sm);
@@ -221,7 +221,7 @@
   }
 
   .navbar-collapse {
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--bg-primary);
     backdrop-filter: blur(20px);
     border-radius: 12px;
     margin-top: 1rem;
@@ -280,7 +280,7 @@
 
 /* Scroll effect */
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.98) !important;
+  background: var(--bg-primary) !important;
   box-shadow: var(--shadow-md);
 }
 
@@ -302,7 +302,7 @@
 
 /* Mode sombre pour le header */
 .dark-theme .navbar {
-  background: rgba(15, 23, 42, 0.95) !important;
+  background: var(--bg-primary) !important;
   border-bottom-color: var(--border-color) !important;
 }
 
@@ -356,12 +356,12 @@
 }
 
 .dark-theme .navbar.scrolled {
-  background: rgba(15, 23, 42, 0.98) !important;
+  background: var(--bg-primary) !important;
 }
 
 @media (max-width: 991px) {
   .dark-theme .navbar-collapse {
-    background: rgba(15, 23, 42, 0.98);
+    background: var(--bg-primary);
     border-color: var(--border-color);
   }
 }
@@ -369,7 +369,7 @@
 /* Support pour les préférences système */
 @media (prefers-color-scheme: dark) {
   :root:not(.light-theme) .navbar {
-    background: rgba(15, 23, 42, 0.95) !important;
+    background: var(--bg-primary) !important;
     border-bottom-color: var(--border-color) !important;
   }
 
@@ -423,12 +423,12 @@
   }
 
   :root:not(.light-theme) .navbar.scrolled {
-    background: rgba(15, 23, 42, 0.98) !important;
+    background: var(--bg-primary) !important;
   }
 
   @media (max-width: 991px) {
     :root:not(.light-theme) .navbar-collapse {
-      background: rgba(15, 23, 42, 0.98);
+      background: var(--bg-primary);
       border-color: var(--border-color);
     }
   }
