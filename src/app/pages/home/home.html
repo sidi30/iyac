@@ -1,4 +1,7 @@
 <div class="home-page fade-in">
+  <!-- Debug Section -->
+  <app-debug-articles></app-debug-articles>
+
   <!-- Hero Section avec l'article principal -->
   <section class="hero-section bg-light py-5 slide-up" *ngIf="featuredArticles$ | async as featured">
     <div class="container">
