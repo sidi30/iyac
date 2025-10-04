@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { SecurityConfigService } from './security-config.service';
 
 export interface NewsletterSubscriber {
   email: string;
@@ -17,13 +18,15 @@ export interface NewsletterSubscriber {
   providedIn: 'root'
 })
 export class GoogleSheetsService {
-  private readonly GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQhp69hgYM9qEfxScvamEGrJ3iYL_1unpoghHUDRhBA18ZR5u0wG-afPYnb2dy7re8rQ/exec';
   private readonly STORAGE_KEY = 'newsletter_subscribers';
   
   private subscribersSubject = new BehaviorSubject<NewsletterSubscriber[]>([]);
   public subscribers$ = this.subscribersSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private securityConfig: SecurityConfigService
+  ) {
     this.loadSubscribers();
   }
 
@@ -40,7 +43,8 @@ export class GoogleSheetsService {
         source: 'website'
       };
 
-      const response = await this.http.post(this.GOOGLE_APPS_SCRIPT_URL, data).toPromise();
+      const url = this.securityConfig.getGoogleSheetsUrl();
+      const response = await this.http.post(url, data).toPromise();
       console.log('Abonné sauvegardé dans Google Sheets:', response);
       return true;
     } catch (error) {
@@ -54,7 +58,8 @@ export class GoogleSheetsService {
    */
   async loadSubscribersFromSheets(): Promise<NewsletterSubscriber[]> {
     try {
-      const response = await this.http.get(`${this.GOOGLE_APPS_SCRIPT_URL}?action=getSubscribers`).toPromise() as any;
+      const url = this.securityConfig.getGoogleSheetsUrl();
+      const response = await this.http.get(`${url}?action=getSubscribers`).toPromise() as any;
       
       if (response && response.subscribers) {
         const subscribers = response.subscribers.map((sub: any) => ({

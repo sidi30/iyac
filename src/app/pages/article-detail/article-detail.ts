@@ -5,11 +5,12 @@ import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article.model';
 import { Observable } from 'rxjs';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
+import { SanitizeHtmlPipe } from '../../pipes/sanitize-html.pipe';
 
 @Component({
   selector: 'app-article-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SanitizeHtmlPipe],
   templateUrl: './article-detail.html',
   styleUrls: ['./article-detail.scss']
 })

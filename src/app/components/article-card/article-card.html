@@ -35,7 +35,7 @@
       </p>
 
       <!-- Contenu complet pour la vue détaillée -->
-      <div class="card-text article-content" *ngIf="showFullContent" [innerHTML]="article.content | slice:0:300">
+      <div class="card-text article-content" *ngIf="showFullContent" [innerHTML]="article.content | slice:0:300 | sanitizeHtml">
       </div>
 
       <!-- Meta informations -->
