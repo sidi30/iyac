@@ -68,19 +68,6 @@ import { Observable } from 'rxjs';
           <app-video-player [videoItem]="videoItem"></app-video-player>
         </div>
       </div>
-
-      <!-- Vidéos mises en avant -->
-      <div class="row mt-5" *ngIf="featuredVideos$ | async as featuredVideos">
-        <div class="col-12">
-          <h3 class="mb-4">
-            <i class="fas fa-star text-warning me-2"></i>
-            Vidéos mises en avant
-          </h3>
-        </div>
-        <div class="col-12" *ngFor="let videoItem of featuredVideos">
-          <app-video-player [videoItem]="videoItem"></app-video-player>
-        </div>
-      </div>
     </div>
   `,
   styles: [`
@@ -270,14 +257,12 @@ import { Observable } from 'rxjs';
 })
 export class VideosComponent implements OnInit {
   videoItems$: Observable<VideoItem[]>;
-  featuredVideos$: Observable<VideoItem[]>;
   searchTerm = '';
   selectedCategory = '';
   categories: string[] = [];
 
   constructor(private mediaService: MediaService) {
     this.videoItems$ = this.mediaService.getVideoItems();
-    this.featuredVideos$ = this.mediaService.getFeaturedVideos();
   }
 
   ngOnInit() {

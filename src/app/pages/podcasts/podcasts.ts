@@ -68,19 +68,6 @@ import { Observable } from 'rxjs';
           <app-audio-player [audioItem]="audioItem"></app-audio-player>
         </div>
       </div>
-
-      <!-- Podcasts mis en avant -->
-      <div class="row mt-5" *ngIf="featuredAudio$ | async as featuredAudio">
-        <div class="col-12">
-          <h3 class="mb-4">
-            <i class="fas fa-star text-warning me-2"></i>
-            Podcasts mis en avant
-          </h3>
-        </div>
-        <div class="col-12" *ngFor="let audioItem of featuredAudio">
-          <app-audio-player [audioItem]="audioItem"></app-audio-player>
-        </div>
-      </div>
     </div>
   `,
   styles: [`
@@ -270,14 +257,12 @@ import { Observable } from 'rxjs';
 })
 export class PodcastsComponent implements OnInit {
   audioItems$: Observable<AudioItem[]>;
-  featuredAudio$: Observable<AudioItem[]>;
   searchTerm = '';
   selectedCategory = '';
   categories: string[] = [];
 
   constructor(private mediaService: MediaService) {
     this.audioItems$ = this.mediaService.getAudioItems();
-    this.featuredAudio$ = this.mediaService.getFeaturedAudio();
   }
 
   ngOnInit() {
