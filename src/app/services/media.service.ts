@@ -25,24 +25,31 @@ export class MediaService {
     const mediaItems: MediaItem[] = [
       {
         id: 'audio-001',
-        title: 'Interview audio - Ibrahim Yacoubou',
-        description: 'Interview exclusive avec Ibrahim Yacoubou sur la situation politique au Niger et son combat pour la démocratie.',
+        title: 'Interview Audio - Honorable Kabirou Ibrahim',
+        description: 'Interview exclusive avec l\'honorable Kabirou Ibrahim sur la détention injuste de son frère Ibrahim Yacoubou (IYAC) et la situation politique au Niger.',
         type: 'audio',
         fileUrl: 'assets/interview1.mp3',
         duration: 1800, // 30 minutes estimées
         publishDate: new Date('2025-09-30'),
         author: 'Équipe Liberté IYAC',
         category: 'Interview',
-        tags: ['Interview', 'Ibrahim Yacoubou', 'Niger', 'Démocratie', 'Politique'],
+        tags: ['Interview', 'Kabirou Ibrahim', 'Ibrahim Yacoubou', 'IYAC', 'Détention', 'Niger', 'Démocratie'],
         isFeatured: true,
         downloadUrl: 'assets/interview1.mp3',
         size: 15 * 1024 * 1024, // 15 MB estimé
-        transcript: 'Transcription de l\'interview disponible sur demande...'
+        transcript: `
+[00:00] Introduction - Présentation de l'interview avec l'honorable Kabirou Ibrahim
+[01:30] Question sur la détention d'Ibrahim Yacoubou (IYAC)
+[03:45] Réponse de Kabirou Ibrahim sur l'injustice
+[06:20] Discussion sur la situation politique au Niger
+[09:15] Appel à la solidarité internationale
+[12:00] Conclusion et message d'espoir
+        `.trim()
       } as AudioItem,
       {
         id: 'video-001',
-        title: 'Interview vidéo - Ibrahim Yacoubou',
-        description: 'Interview vidéo complète avec Ibrahim Yacoubou, leader politique nigérien, sur les défis démocratiques et les perspectives d\'avenir.',
+        title: 'Interview Vidéo - Honorable Kabirou Ibrahim',
+        description: 'Interview vidéo complète avec l\'honorable Kabirou Ibrahim, frère d\'Ibrahim Yacoubou (IYAC), sur la détention injuste et les défis démocratiques au Niger.',
         type: 'video',
         fileUrl: 'assets/videos/interviewVideo.mp4',
         thumbnailUrl: 'assets/iyac.jpg',
@@ -50,13 +57,21 @@ export class MediaService {
         publishDate: new Date('2025-10-01'),
         author: 'Équipe Liberté IYAC',
         category: 'Interview',
-        tags: ['Interview', 'Ibrahim Yacoubou', 'Niger', 'Démocratie', 'Vidéo'],
+        tags: ['Interview', 'Kabirou Ibrahim', 'Ibrahim Yacoubou', 'IYAC', 'Détention', 'Vidéo', 'Niger'],
         isFeatured: true,
         downloadUrl: 'assets/videos/interviewVideo.mp4',
         size: 50 * 1024 * 1024, // 50 MB estimé
         resolution: '1920x1080',
         quality: 'HD',
-        transcript: 'Transcription vidéo disponible...'
+        transcript: `
+[00:00] Introduction - Présentation de l'interview vidéo avec l'honorable Kabirou Ibrahim
+[02:15] Question sur la détention injuste d'Ibrahim Yacoubou (IYAC)
+[05:30] Réponse détaillée de Kabirou Ibrahim sur l'injustice
+[08:45] Discussion sur les défis démocratiques au Niger
+[12:20] Appel à la mobilisation internationale
+[15:00] Message de solidarité et d'espoir
+[18:30] Conclusion et remerciements
+        `.trim()
       } as VideoItem
     ];
 
@@ -92,6 +107,18 @@ export class MediaService {
     ).asObservable();
   }
 
+  getFeaturedAudio(): Observable<AudioItem[]> {
+    return new BehaviorSubject(
+      this.mediaItemsSubject.value.filter(item => item.isFeatured && item.type === 'audio') as AudioItem[]
+    ).asObservable();
+  }
+
+  getFeaturedVideos(): Observable<VideoItem[]> {
+    return new BehaviorSubject(
+      this.mediaItemsSubject.value.filter(item => item.isFeatured && item.type === 'video') as VideoItem[]
+    ).asObservable();
+  }
+
   getMediaByCategory(category: string): Observable<MediaItem[]> {
     return new BehaviorSubject(
       this.mediaItemsSubject.value.filter(item => item.category === category)
@@ -107,6 +134,46 @@ export class MediaService {
         item.author?.toLowerCase().includes(searchTerm) ||
         item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
       )
+    ).asObservable();
+  }
+
+  searchAudio(keyword: string): Observable<AudioItem[]> {
+    const searchTerm = keyword.toLowerCase();
+    return new BehaviorSubject(
+      this.mediaItemsSubject.value.filter(item => 
+        item.type === 'audio' && (
+          item.title.toLowerCase().includes(searchTerm) ||
+          item.description.toLowerCase().includes(searchTerm) ||
+          item.author?.toLowerCase().includes(searchTerm) ||
+          item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        )
+      ) as AudioItem[]
+    ).asObservable();
+  }
+
+  searchVideos(keyword: string): Observable<VideoItem[]> {
+    const searchTerm = keyword.toLowerCase();
+    return new BehaviorSubject(
+      this.mediaItemsSubject.value.filter(item => 
+        item.type === 'video' && (
+          item.title.toLowerCase().includes(searchTerm) ||
+          item.description.toLowerCase().includes(searchTerm) ||
+          item.author?.toLowerCase().includes(searchTerm) ||
+          item.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        )
+      ) as VideoItem[]
+    ).asObservable();
+  }
+
+  getAudioByCategory(category: string): Observable<AudioItem[]> {
+    return new BehaviorSubject(
+      this.mediaItemsSubject.value.filter(item => item.type === 'audio' && item.category === category) as AudioItem[]
+    ).asObservable();
+  }
+
+  getVideoByCategory(category: string): Observable<VideoItem[]> {
+    return new BehaviorSubject(
+      this.mediaItemsSubject.value.filter(item => item.type === 'video' && item.category === category) as VideoItem[]
     ).asObservable();
   }
 
