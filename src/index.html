@@ -19,21 +19,14 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
-  <!-- Google Analytics -->
-  <!-- Remplacez G-XXXXXXXXXX par votre ID de mesure Google Analytics -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJDC6WW0HV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-JJDC6WW0HV', {
-      page_title: document.title,
-      page_location: window.location.href,
-      custom_map: {
-        'custom_parameter_1': 'site_type',
-        'custom_parameter_2': 'content_category'
-      }
-    });
+
+    gtag('config', 'G-JJDC6WW0HV');
   </script>
 
   <!-- CSS critique inline pour éviter FOUC -->
