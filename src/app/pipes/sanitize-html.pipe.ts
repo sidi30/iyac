@@ -1,5 +1,4 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
-import { SecurityMonitoringService } from '../services/security-monitoring.service';
 
 @Pipe({
   name: 'sanitizeHtml',
@@ -7,15 +6,16 @@ import { SecurityMonitoringService } from '../services/security-monitoring.servi
 })
 export class SanitizeHtmlPipe implements PipeTransform {
   
-  constructor(private securityMonitoring: SecurityMonitoringService) {}
-
   transform(value: string): string {
     if (!value) return '';
     
-    // Version simplifiée pour debug - retourner le contenu tel quel
-    console.log('SanitizeHtmlPipe - Input:', value.substring(0, 100));
-    
-    // Pour l'instant, retourner le contenu sans sanitisation pour tester
-    return value;
+    // Version simplifiée qui fonctionne - nettoyage basique
+    return value
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Supprimer les scripts
+      .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '') // Supprimer les iframes
+      .replace(/on\w+="[^"]*"/gi, '') // Supprimer les attributs onclick, onload, etc.
+      .replace(/javascript:/gi, '') // Supprimer les liens javascript:
+      .replace(/data:/gi, '') // Supprimer les liens data:
+      .replace(/vbscript:/gi, ''); // Supprimer les liens vbscript:
   }
 }
