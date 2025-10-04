@@ -13,10 +13,11 @@
     <button
       class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
       [class.collapsed]="!isMenuOpen"
-      (click)="toggleMenu()">
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen"
+      aria-controls="navbarNav"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -24,22 +25,22 @@
     <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isMenuOpen">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuOpen = false">
             Accueil
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/videos" routerLinkActive="active">
+          <a class="nav-link" routerLink="/videos" routerLinkActive="active" (click)="isMenuOpen = false">
             Vidéos
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/podcasts" routerLinkActive="active">
+          <a class="nav-link" routerLink="/podcasts" routerLinkActive="active" (click)="isMenuOpen = false">
             Podcasts
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/documents" routerLinkActive="active">
+          <a class="nav-link" routerLink="/documents" routerLinkActive="active" (click)="isMenuOpen = false">
             Documents
           </a>
         </li>
@@ -51,8 +52,8 @@
         <button 
           class="btn btn-outline-secondary btn-sm theme-toggle" 
           (click)="toggleTheme()"
-          [title]="isDarkMode ? 'Mode clair' : 'Mode sombre'">
-          <i [class]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+          [title]="getThemeTitle()">
+          <i [class]="getThemeIcon()"></i>
         </button>
         
         <!-- Bouton newsletter -->

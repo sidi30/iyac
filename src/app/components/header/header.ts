@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BreakingNewsComponent } from '../breaking-news/breaking-news';
+import { ThemeService, ThemeMode } from '../../services/theme.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +14,19 @@ import { BreakingNewsComponent } from '../breaking-news/breaking-news';
 })
 export class HeaderComponent implements OnInit {
   isMenuOpen = false;
-  isDarkMode = false;
   isScrolled = false;
+  
+  // Observables pour le thème
+  currentTheme$: Observable<'light' | 'dark'>;
+  currentMode$: Observable<ThemeMode>;
+  
+  constructor(private themeService: ThemeService) {
+    this.currentTheme$ = this.themeService.currentTheme$;
+    this.currentMode$ = this.themeService.currentMode$;
+  }
 
   ngOnInit() {
-    // Charger le thème sauvegardé
-    this.loadTheme();
-    // Appliquer le thème initial
-    this.applyTheme();
+    // Le thème est maintenant géré par le service
   }
 
   @HostListener('window:scroll')
@@ -32,32 +39,30 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-    this.applyTheme();
-    this.saveTheme();
+    this.themeService.toggleTheme();
   }
 
-  private loadTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.isDarkMode = savedTheme === 'dark';
-    } else {
-      // Utiliser la préférence système
-      this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // Méthodes utilitaires pour le template
+  isDarkMode(): boolean {
+    return this.themeService.isDarkMode();
+  }
+
+  isAutoMode(): boolean {
+    return this.themeService.isAutoMode();
+  }
+
+  getThemeIcon(): string {
+    if (this.isAutoMode()) {
+      return 'fas fa-adjust';
     }
+    return this.isDarkMode() ? 'fas fa-sun' : 'fas fa-moon';
   }
 
-  private saveTheme() {
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
-  }
-
-  private applyTheme() {
-    const body = document.body;
-    if (this.isDarkMode) {
-      body.classList.add('dark-theme');
-    } else {
-      body.classList.remove('dark-theme');
+  getThemeTitle(): string {
+    if (this.isAutoMode()) {
+      return 'Mode automatique';
     }
+    return this.isDarkMode() ? 'Mode clair' : 'Mode sombre';
   }
 
   openNewsletterModal() {

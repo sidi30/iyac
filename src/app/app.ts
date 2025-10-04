@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header';
 import { CommonModule } from '@angular/common';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,15 @@ export class AppComponent implements OnInit {
   showScrollButton = false;
   currentYear = new Date().getFullYear();
 
-  constructor(private googleAnalytics: GoogleAnalyticsService) {}
+  constructor(
+    private googleAnalytics: GoogleAnalyticsService,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit() {
     // Initialisation
     this.googleAnalytics.trackPageView('Accueil', 'home');
+    // Le thème est maintenant géré par le service ThemeService
   }
 
   @HostListener('window:scroll')
