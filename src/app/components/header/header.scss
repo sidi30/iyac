@@ -38,14 +38,14 @@
 .navbar-brand small {
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--text-medium);
+  color: var(--text-dark);
   letter-spacing: 0.5px;
   transition: color var(--transition-normal);
 }
 
 /* Navigation links */
 .navbar-nav .nav-link {
-  color: var(--text-medium) !important;
+  color: var(--text-dark) !important;
   font-weight: 500;
   padding: 0.75rem 1rem !important;
   margin: 0 0.25rem;
@@ -314,11 +314,11 @@
 }
 
 .dark-theme .navbar-brand small {
-  color: var(--text-medium);
+  color: var(--text-dark);
 }
 
 .dark-theme .navbar-nav .nav-link {
-  color: var(--text-medium) !important;
+  color: var(--text-dark) !important;
 }
 
 .dark-theme .navbar-nav .nav-link:hover {
@@ -381,11 +381,11 @@
   }
 
   :root:not(.light-theme) .navbar-brand small {
-    color: var(--text-medium);
+    color: var(--text-dark);
   }
 
   :root:not(.light-theme) .navbar-nav .nav-link {
-    color: var(--text-medium) !important;
+    color: var(--text-dark) !important;
   }
 
   :root:not(.light-theme) .navbar-nav .nav-link:hover {
