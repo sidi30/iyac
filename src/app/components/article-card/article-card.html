@@ -25,12 +25,12 @@
       </div>
 
       <!-- Titre de l'article -->
-      <h5 class="card-title" [routerLink]="['/article', article.id]" class="text-decoration-none text-dark">
+      <h5 class="card-title" [routerLink]="['/article', article.id]" class="text-decoration-none">
         {{ article.title }}
       </h5>
 
       <!-- Extrait de l'article -->
-      <p class="card-text text-muted flex-grow-1" *ngIf="!showFullContent">
+      <p class="card-text flex-grow-1" *ngIf="!showFullContent">
         {{ article.excerpt }}
       </p>
 

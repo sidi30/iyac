@@ -101,11 +101,11 @@
   position: relative;
   z-index: 1;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--bg-primary);
   border-radius: 20px;
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 .leader-quote blockquote {
@@ -177,8 +177,8 @@
 }
 
 .dark-theme .leader-quote {
-  background: rgba(17, 24, 39, 0.9);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--bg-primary);
+  border-color: var(--border-color);
 }
 
 .dark-theme .leader-quote blockquote {
