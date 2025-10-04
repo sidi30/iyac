@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnDestroy, ElementRef, ViewChild } from '@ang
 import { CommonModule } from '@angular/common';
 import { AudioItem, PlaybackState } from '../../models/media.model';
 import { MediaService } from '../../services/media.service';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 @Component({
   selector: 'app-audio-player',
@@ -507,7 +508,10 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   isMuted = false;
   progressPercentage = 0;
 
-  constructor(private mediaService: MediaService) {}
+  constructor(
+    private mediaService: MediaService,
+    private googleAnalytics: GoogleAnalyticsService
+  ) {}
 
   ngOnInit() {
     if (this.audioItem) {
@@ -556,8 +560,13 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   togglePlayPause() {
     if (this.isPlaying) {
       this.audioElement.nativeElement.pause();
+      // Tracking de la pause
+      this.googleAnalytics.trackMediaInteraction('pause', this.audioItem.id, 'audio');
     } else {
       this.audioElement.nativeElement.play();
+      // Tracking du démarrage de lecture
+      this.googleAnalytics.trackMediaPlay(this.audioItem.id, this.audioItem.title, 'audio');
+      this.googleAnalytics.trackMediaInteraction('play', this.audioItem.id, 'audio');
     }
   }
 
@@ -583,6 +592,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   }
 
   downloadAudio() {
+    // Tracking du téléchargement
+    this.googleAnalytics.trackDownload(this.audioItem.title, 'audio');
     this.mediaService.downloadMedia(this.audioItem);
   }
 

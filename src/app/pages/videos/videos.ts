@@ -5,6 +5,7 @@ import { VideoItem } from '../../models/media.model';
 import { MediaService } from '../../services/media.service';
 import { VideoPlayerComponent } from '../../components/video-player/video-player';
 import { Observable } from 'rxjs';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 @Component({
   selector: 'app-videos',
@@ -261,7 +262,10 @@ export class VideosComponent implements OnInit {
   selectedCategory = '';
   categories: string[] = [];
 
-  constructor(private mediaService: MediaService) {
+  constructor(
+    private mediaService: MediaService,
+    private googleAnalytics: GoogleAnalyticsService
+  ) {
     this.videoItems$ = this.mediaService.getVideoItems();
   }
 
@@ -275,6 +279,10 @@ export class VideosComponent implements OnInit {
   onSearch() {
     if (this.searchTerm.trim()) {
       this.videoItems$ = this.mediaService.searchVideos(this.searchTerm);
+      // Tracking de la recherche
+      this.videoItems$.subscribe(items => {
+        this.googleAnalytics.trackSearch(this.searchTerm, items.length);
+      });
     } else {
       this.videoItems$ = this.mediaService.getVideoItems();
     }
@@ -282,6 +290,9 @@ export class VideosComponent implements OnInit {
 
   filterByCategory(category: string) {
     this.selectedCategory = category;
+    // Tracking de l'utilisation des filtres
+    this.googleAnalytics.trackFilterUse('category', category);
+    
     if (category) {
       this.videoItems$ = this.mediaService.getVideoByCategory(category);
     } else {

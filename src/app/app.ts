@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header';
 import { CommonModule } from '@angular/common';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,11 @@ export class AppComponent implements OnInit {
   showScrollButton = false;
   currentYear = new Date().getFullYear();
 
+  constructor(private googleAnalytics: GoogleAnalyticsService) {}
+
   ngOnInit() {
     // Initialisation
+    this.googleAnalytics.trackPageView('Accueil', 'home');
   }
 
   @HostListener('window:scroll')

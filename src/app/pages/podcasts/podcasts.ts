@@ -5,6 +5,7 @@ import { AudioItem } from '../../models/media.model';
 import { MediaService } from '../../services/media.service';
 import { AudioPlayerComponent } from '../../components/audio-player/audio-player';
 import { Observable } from 'rxjs';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 @Component({
   selector: 'app-podcasts',
@@ -261,7 +262,10 @@ export class PodcastsComponent implements OnInit {
   selectedCategory = '';
   categories: string[] = [];
 
-  constructor(private mediaService: MediaService) {
+  constructor(
+    private mediaService: MediaService,
+    private googleAnalytics: GoogleAnalyticsService
+  ) {
     this.audioItems$ = this.mediaService.getAudioItems();
   }
 
@@ -275,6 +279,10 @@ export class PodcastsComponent implements OnInit {
   onSearch() {
     if (this.searchTerm.trim()) {
       this.audioItems$ = this.mediaService.searchAudio(this.searchTerm);
+      // Tracking de la recherche
+      this.audioItems$.subscribe(items => {
+        this.googleAnalytics.trackSearch(this.searchTerm, items.length);
+      });
     } else {
       this.audioItems$ = this.mediaService.getAudioItems();
     }
@@ -282,6 +290,9 @@ export class PodcastsComponent implements OnInit {
 
   filterByCategory(category: string) {
     this.selectedCategory = category;
+    // Tracking de l'utilisation des filtres
+    this.googleAnalytics.trackFilterUse('category', category);
+    
     if (category) {
       this.audioItems$ = this.mediaService.getAudioByCategory(category);
     } else {

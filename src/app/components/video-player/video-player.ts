@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnDestroy, ElementRef, ViewChild } from '@ang
 import { CommonModule } from '@angular/common';
 import { VideoItem } from '../../models/media.model';
 import { MediaService } from '../../services/media.service';
+import { GoogleAnalyticsService } from '../../services/google-analytics.service';
 
 @Component({
   selector: 'app-video-player',
@@ -641,7 +642,10 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   progressPercentage = 0;
   showControls = false;
 
-  constructor(private mediaService: MediaService) {}
+  constructor(
+    private mediaService: MediaService,
+    private googleAnalytics: GoogleAnalyticsService
+  ) {}
 
   ngOnInit() {
     if (this.videoItem) {
@@ -693,8 +697,13 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   togglePlayPause() {
     if (this.isPlaying) {
       this.videoElement.nativeElement.pause();
+      // Tracking de la pause
+      this.googleAnalytics.trackMediaInteraction('pause', this.videoItem.id, 'video');
     } else {
       this.videoElement.nativeElement.play();
+      // Tracking du démarrage de lecture
+      this.googleAnalytics.trackMediaPlay(this.videoItem.id, this.videoItem.title, 'video');
+      this.googleAnalytics.trackMediaInteraction('play', this.videoItem.id, 'video');
     }
   }
 
@@ -726,6 +735,8 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   downloadVideo() {
+    // Tracking du téléchargement
+    this.googleAnalytics.trackDownload(this.videoItem.title, 'video');
     this.mediaService.downloadMedia(this.videoItem);
   }
 
