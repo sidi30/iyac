@@ -1,34 +1,126 @@
 <div class="newsletter-signup">
+  <div class="newsletter-header mb-4">
+    <h4 class="newsletter-title">
+      <i class="fas fa-envelope me-2"></i>
+      Restez Informé(e)
+    </h4>
+    <p class="newsletter-subtitle">
+      Recevez nos dernières actualités directement dans votre boîte mail
+    </p>
+    <div class="subscribers-count" *ngIf="subscribersCount > 0">
+      <i class="fas fa-users me-1"></i>
+      {{ subscribersCount }} abonné{{ subscribersCount > 1 ? 's' : '' }}
+    </div>
+  </div>
+
   <form (ngSubmit)="onSubmit()" class="newsletter-form">
-    <div class="input-group mb-3">
-      <input
-        type="email"
-        class="form-control"
-        placeholder="Votre adresse email"
-        [(ngModel)]="email"
-        name="email"
-        [disabled]="isLoading"
-        required>
+    <!-- Email et Nom -->
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Votre adresse email *"
+          [(ngModel)]="email"
+          name="email"
+          [disabled]="isLoading"
+          required>
+      </div>
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Votre nom (optionnel)"
+          [(ngModel)]="name"
+          name="name"
+          [disabled]="isLoading">
+      </div>
+    </div>
+
+    <!-- Préférences -->
+    <div class="preferences-section mb-3">
+      <button 
+        type="button" 
+        class="btn btn-outline-light btn-sm"
+        (click)="togglePreferences()">
+        <i class="fas fa-cog me-1"></i>
+        Préférences
+        <i class="fas" [ngClass]="{'fa-chevron-down': !showPreferences, 'fa-chevron-up': showPreferences}"></i>
+      </button>
+      
+      <div class="preferences-content" *ngIf="showPreferences">
+        <div class="row g-2 mt-2">
+          <div class="col-4">
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                id="pref-articles"
+                [(ngModel)]="preferences.articles"
+                name="pref-articles">
+              <label class="form-check-label" for="pref-articles">
+                <i class="fas fa-newspaper me-1"></i>
+                Articles
+              </label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                id="pref-videos"
+                [(ngModel)]="preferences.videos"
+                name="pref-videos">
+              <label class="form-check-label" for="pref-videos">
+                <i class="fas fa-video me-1"></i>
+                Vidéos
+              </label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="checkbox" 
+                id="pref-podcasts"
+                [(ngModel)]="preferences.podcasts"
+                name="pref-podcasts">
+              <label class="form-check-label" for="pref-podcasts">
+                <i class="fas fa-microphone me-1"></i>
+                Podcasts
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bouton d'abonnement -->
+    <div class="d-grid">
       <button
-        class="btn btn-light"
+        class="btn btn-primary btn-lg"
         type="submit"
         [disabled]="isLoading || !email">
         <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
-        <i class="fas fa-paper-plane me-1" *ngIf="!isLoading"></i>
-        {{ isLoading ? 'Inscription...' : 'S\'abonner' }}
+        <i class="fas fa-paper-plane me-2" *ngIf="!isLoading"></i>
+        {{ isLoading ? 'Inscription en cours...' : 'S\'abonner à la Newsletter' }}
       </button>
     </div>
 
     <!-- Message de retour -->
-    <div *ngIf="message" class="alert" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
-      <i class="fas" [ngClass]="{'fa-check-circle': isSuccess, 'fa-exclamation-triangle': !isSuccess}"></i>
+    <div *ngIf="message" class="alert mt-3" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">
+      <i class="fas me-2" [ngClass]="{'fa-check-circle': isSuccess, 'fa-exclamation-triangle': !isSuccess}"></i>
       {{ message }}
     </div>
 
-    <small class="text-light opacity-75">
-      <i class="fas fa-lock me-1"></i>
-      Vos données sont protégées. Pas de spam, désinscription facile.
-    </small>
+    <!-- Informations de confidentialité -->
+    <div class="privacy-info mt-3">
+      <small class="text-light opacity-75">
+        <i class="fas fa-shield-alt me-1"></i>
+        Vos données sont protégées. Pas de spam, désinscription facile à tout moment.
+      </small>
+    </div>
   </form>
 </div>
 

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NewsletterService } from '../../services/newsletter.service';
+import { NewsletterService, NewsletterSubscriber } from '../../services/newsletter.service';
 
 @Component({
   selector: 'app-newsletter-signup',
@@ -10,15 +10,27 @@ import { NewsletterService } from '../../services/newsletter.service';
   templateUrl: './newsletter-signup.html',
   styleUrls: ['./newsletter-signup.scss']
 })
-export class NewsletterSignupComponent {
+export class NewsletterSignupComponent implements OnInit {
   email = '';
+  name = '';
   isLoading = false;
   message = '';
   isSuccess = false;
+  showPreferences = false;
+  preferences = {
+    articles: true,
+    videos: true,
+    podcasts: true
+  };
+  subscribersCount = 0;
 
   constructor(private newsletterService: NewsletterService) {}
 
-  onSubmit() {
+  ngOnInit() {
+    this.subscribersCount = this.newsletterService.getSubscribersCount();
+  }
+
+  async onSubmit() {
     if (!this.email || !this.isValidEmail(this.email)) {
       this.showMessage('Veuillez entrer une adresse email valide.', false);
       return;
@@ -27,19 +39,22 @@ export class NewsletterSignupComponent {
     this.isLoading = true;
     this.message = '';
 
-    this.newsletterService.subscribe(this.email).subscribe({
-      next: (response) => {
-        this.showMessage(response.message, response.success);
-        if (response.success) {
-          this.email = '';
-        }
-        this.isLoading = false;
-      },
-      error: () => {
-        this.showMessage('Une erreur est survenue. Veuillez réessayer.', false);
-        this.isLoading = false;
-      }
-    });
+    try {
+      await this.newsletterService.subscribe(this.email, this.name, this.preferences);
+      this.showMessage('🎉 Abonnement réussi ! Vous recevrez nos newsletters.', true);
+      this.email = '';
+      this.name = '';
+      this.showPreferences = false;
+      this.subscribersCount = this.newsletterService.getSubscribersCount();
+    } catch (error: any) {
+      this.showMessage(error.message || 'Une erreur est survenue. Veuillez réessayer.', false);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  togglePreferences() {
+    this.showPreferences = !this.showPreferences;
   }
 
   private isValidEmail(email: string): boolean {

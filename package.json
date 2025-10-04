@@ -36,8 +36,10 @@
     "@angular/material": "^20.2.5",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "@emailjs/browser": "^4.4.1",
     "bootstrap": "^5.3.8",
     "gtag": "^1.0.1",
+    "resend": "^6.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
