@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Article, BreakingNews } from '../models/article.model';
-import { allArticles } from '../data/articles';
+import { allArticles } from '../data/articles/index';
 
 @Injectable({
   providedIn: 'root'
