@@ -1,11 +1,15 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
-import DOMPurify from 'dompurify';
+import * as DOMPurify from 'dompurify';
+import { SecurityMonitoringService } from '../services/security-monitoring.service';
 
 @Pipe({
   name: 'sanitizeHtml',
   standalone: true
 })
 export class SanitizeHtmlPipe implements PipeTransform {
+  
+  constructor(private securityMonitoring: SecurityMonitoringService) {}
+
   transform(value: string): string {
     if (!value) return '';
     
@@ -22,6 +26,13 @@ export class SanitizeHtmlPipe implements PipeTransform {
       RETURN_DOM_IMPORT: false
     };
     
-    return DOMPurify.sanitize(value, config);
+    const sanitizedContent = DOMPurify.sanitize(value, config);
+    
+    // Détecter les tentatives XSS
+    if (sanitizedContent !== value) {
+      this.securityMonitoring.logXssAttempt(value, sanitizedContent);
+    }
+    
+    return sanitizedContent;
   }
 }

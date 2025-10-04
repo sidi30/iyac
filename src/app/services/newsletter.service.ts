@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GoogleSheetsService, NewsletterSubscriber } from './google-sheets.service';
+import { SecurityConfigService } from './security-config.service';
+import { CsrfProtectionService } from './csrf-protection.service';
+import { RateLimitingService } from './rate-limiting.service';
+import { SecurityMonitoringService } from './security-monitoring.service';
+import { InputValidationService } from './input-validation.service';
 
 export type { NewsletterSubscriber } from './google-sheets.service';
 
@@ -18,13 +23,16 @@ export interface NewsletterContent {
   providedIn: 'root'
 })
 export class NewsletterService {
-  private readonly RESEND_API_KEY = 'YOUR_RESEND_API_KEY'; // À remplacer
-  private readonly FROM_EMAIL = 'noreply@liberteiyac.com'; // À remplacer par votre domaine
   private readonly RESEND_API_URL = 'https://api.resend.com/emails';
 
   constructor(
     private http: HttpClient,
-    private googleSheetsService: GoogleSheetsService
+    private googleSheetsService: GoogleSheetsService,
+    private securityConfig: SecurityConfigService,
+    private csrfProtection: CsrfProtectionService,
+    private rateLimiting: RateLimitingService,
+    private securityMonitoring: SecurityMonitoringService,
+    private inputValidation: InputValidationService
   ) {}
 
   public get subscribers$() {
@@ -36,26 +44,45 @@ export class NewsletterService {
    */
   async subscribe(email: string, name?: string, preferences?: Partial<NewsletterSubscriber['preferences']>): Promise<boolean> {
     try {
+      // Vérifier le rate limiting
+      const rateLimitCheck = this.rateLimiting.isAllowed('newsletter_subscribe', email);
+      if (!rateLimitCheck.allowed) {
+        this.securityMonitoring.logRateLimitExceeded('newsletter_subscribe', 5, 6);
+        throw new Error(rateLimitCheck.reason);
+      }
+
+      // Valider les données d'entrée
+      const validationResult = this.inputValidation.validateSubscriptionData({
+        email,
+        name,
+        preferences
+      });
+
+      if (!validationResult.isValid) {
+        this.securityMonitoring.logValidationFailure('subscription', email, validationResult.errors?.join(', ') || 'Validation failed');
+        throw new Error(validationResult.errors?.join(', ') || 'Données invalides');
+      }
+
+      const cleanedData = validationResult.cleanedData!;
+
       // Vérifier si l'email existe déjà
-      if (this.googleSheetsService.isSubscribed(email)) {
+      if (this.googleSheetsService.isSubscribed(cleanedData.email)) {
         throw new Error('Cet email est déjà abonné à la newsletter');
       }
 
       // Créer le nouvel abonné
       const newSubscriber: NewsletterSubscriber = {
-        email,
-        name: name || '',
+        email: cleanedData.email,
+        name: cleanedData.name,
         subscribedAt: new Date(),
-        preferences: {
-          articles: preferences?.articles ?? true,
-          videos: preferences?.videos ?? true,
-          podcasts: preferences?.podcasts ?? true,
-          ...preferences
-        }
+        preferences: cleanedData.preferences
       };
 
       // Ajouter l'abonné (sauvegarde locale + Google Sheets)
       this.googleSheetsService.addSubscriber(newSubscriber);
+
+      // Enregistrer l'action réussie
+      this.rateLimiting.recordAction('newsletter_subscribe', email);
 
       // Envoyer email de confirmation
       await this.sendWelcomeEmail(newSubscriber);
@@ -122,8 +149,9 @@ export class NewsletterService {
    * Envoyer email de bienvenue
    */
   private async sendWelcomeEmail(subscriber: NewsletterSubscriber): Promise<void> {
+    const fromEmail = this.securityConfig.getFromEmail();
     const emailData = {
-      from: this.FROM_EMAIL,
+      from: fromEmail,
       to: [subscriber.email],
       subject: '🎉 Bienvenue dans la newsletter Liberté IYAC',
       html: this.getWelcomeEmailTemplate(subscriber)
@@ -136,8 +164,9 @@ export class NewsletterService {
    * Envoyer email de contenu
    */
   private async sendContentEmail(subscriber: NewsletterSubscriber, content: NewsletterContent): Promise<void> {
+    const fromEmail = this.securityConfig.getFromEmail();
     const emailData = {
-      from: this.FROM_EMAIL,
+      from: fromEmail,
       to: [subscriber.email],
       subject: `📰 ${this.getContentTypeLabel(content.type)}: ${content.title}`,
       html: this.getContentEmailTemplate(subscriber, content)
@@ -151,16 +180,24 @@ export class NewsletterService {
    */
   private async sendEmail(emailData: any): Promise<void> {
     try {
-      const response = await this.http.post(this.RESEND_API_URL, emailData, {
-        headers: {
-          'Authorization': `Bearer ${this.RESEND_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
-      }).toPromise();
+      const apiKey = this.securityConfig.getResendApiKey();
+      const fromEmail = this.securityConfig.getFromEmail();
+      
+      const headers = {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+        ...this.csrfProtection.getCsrfHeaders()
+      };
+
+      const response = await this.http.post(this.RESEND_API_URL, {
+        ...emailData,
+        from: fromEmail
+      }, { headers }).toPromise();
 
       console.log('Email envoyé avec succès:', response);
     } catch (error) {
       console.error('Erreur lors de l\'envoi de l\'email:', error);
+      this.securityMonitoring.logSecurityEvent('suspicious_activity', 'medium', 'Erreur lors de l\'envoi d\'email', { error });
       throw error;
     }
   }
