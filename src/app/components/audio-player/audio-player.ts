@@ -66,13 +66,6 @@ import { MediaService } from '../../services/media.service';
           </div>
         </div>
 
-        <!-- Transcription -->
-        <div class="transcript-section" *ngIf="audioItem.transcript">
-          <h5>Transcription</h5>
-          <div class="transcript-content">
-            <p>{{ audioItem.transcript }}</p>
-          </div>
-        </div>
       </div>
 
       <!-- Élément audio caché -->
@@ -269,9 +262,10 @@ import { MediaService } from '../../services/media.service';
       cursor: pointer;
     }
 
-    .transcript-section {
+    .live-transcription-section {
       border-top: 1px solid #e0e0e0;
       padding-top: 15px;
+      margin-top: 15px;
     }
 
     .transcript-section h5 {

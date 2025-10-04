@@ -10,7 +10,8 @@
     "deploy": "ng build --configuration production --base-href /iyac/ && npx angular-cli-ghpages --dir=dist/liberteiyac-journal",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "generate-article": "node scripts/generate-article.js"
+    "generate-article": "node scripts/generate-article.js",
+    "generate-media": "node scripts/generate-media.js"
   },
   "prettier": {
     "printWidth": 100,

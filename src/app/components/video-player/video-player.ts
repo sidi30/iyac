@@ -94,13 +94,6 @@ import { MediaService } from '../../services/media.service';
           </div>
         </div>
 
-        <!-- Transcription -->
-        <div class="transcript-section" *ngIf="videoItem.transcript">
-          <h5>Transcription</h5>
-          <div class="transcript-content">
-            <p>{{ videoItem.transcript }}</p>
-          </div>
-        </div>
       </div>
     </div>
   `,
@@ -323,9 +316,10 @@ import { MediaService } from '../../services/media.service';
       font-size: 12px;
     }
 
-    .transcript-section {
+    .live-transcription-section {
       border-top: 1px solid #e0e0e0;
       padding-top: 20px;
+      margin-top: 20px;
     }
 
     .transcript-section h5 {
