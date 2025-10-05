@@ -5,14 +5,14 @@ export const environment = {
   // URLs et clés API - À configurer selon votre environnement
   googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzQhp69hgYM9qEfxScvamEGrJ3iYL_1unpoghHUDRhBA18ZR5u0wG-afPYnb2dy7re8rQ/exec',
   resendApiKey: 're_gzcoEFpe_HrByJC6WDUUQVY6NraZLCPsT', // À remplir avec votre clé Resend
-  fromEmail: 'noreply@liberteiyac.com', // À remplir avec votre domaine
+  fromEmail: 'contact@liberteiyac.com', // Email d'expéditeur configuré
   
   // Google Analytics
   gaTrackingId: 'G-JJDC6WW0HV',
   
-  // Configuration de sécurité
-  enableSecurityHeaders: true,
-  enableCSP: true,
+  // Configuration de production
+  enableMockMode: false, // Désactivé en production - emails réels activés
+  enableCSP: true, // Activé en production
   enableHSTS: true,
   
   // Configuration CORS

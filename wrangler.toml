@@ -1,0 +1,26 @@
+name = "liberteiyac-newsletter"
+main = "subscribe.js"
+compatibility_date = "2024-10-05"
+
+# Configuration du domaine
+[env.production]
+route = "api.liberteiyac.com/subscribe"
+
+# Variables d'environnement (secrets)
+# Utilisez: wrangler secret put RESEND_API_KEY
+# [env.production.vars]
+# RESEND_API_KEY = "re_gzcoEFpe_HrByJC6WDUUQVY6NraZLCPsT"
+
+# Configuration CORS
+[env.production.routes]
+pattern = "api.liberteiyac.com/subscribe"
+zone_name = "liberteiyac.com"
+
+# Limites de sécurité
+[env.production.limits]
+cpu_ms = 50000
+memory_mb = 128
+
+# Configuration de déploiement
+[env.production.build]
+command = "echo 'No build step required'"

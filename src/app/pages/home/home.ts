@@ -19,7 +19,7 @@ interface MediaCard {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, ArticleCardComponent, LeaderShowcaseComponent, NewsletterSignupComponent],
+  imports: [CommonModule, RouterModule, ArticleCardComponent, LeaderShowcaseComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.scss']
 })

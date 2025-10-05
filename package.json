@@ -6,12 +6,16 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --configuration production --base-href /iyac/ --output-hashing=all",
-    "build:ghpages": "ng build --configuration production --base-href /iyac/ --output-hashing=all --optimization=true --extract-licenses=true",
-    "deploy": "ng build --configuration production --base-href /iyac/ && npx angular-cli-ghpages --dir=dist/liberteiyac-journal",
+    "build:ghpages": "ng build --configuration github-pages",
+    "deploy": "node scripts/deploy.js",
+    "deploy:quick": "ng build --configuration github-pages && npx angular-cli-ghpages --dir=dist/liberteiyac-journal/browser",
+    "deploy:dry-run": "node scripts/deploy.js --dry-run",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generate-article": "node scripts/generate-article.js",
-    "generate-media": "node scripts/generate-media.js"
+    "generate-media": "node scripts/generate-media.js",
+    "predeploy": "npm run build:ghpages",
+    "postdeploy": "echo 'Déploiement terminé ! Vérifiez votre site sur GitHub Pages.'"
   },
   "prettier": {
     "printWidth": 100,

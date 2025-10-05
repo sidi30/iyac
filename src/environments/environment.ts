@@ -5,13 +5,13 @@ export const environment = {
   // URLs et clés API pour le développement
   googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzQhp69hgYM9qEfxScvamEGrJ3iYL_1unpoghHUDRhBA18ZR5u0wG-afPYnb2dy7re8rQ/exec',
   resendApiKey: 're_gzcoEFpe_HrByJC6WDUUQVY6NraZLCPsT', // Clé de test pour le développement
-  fromEmail: 'test@liberteiyac.com',
+  fromEmail: 'contact@liberteiyac.com', // Email d'expéditeur configuré
   
   // Google Analytics (ID de test)
   gaTrackingId: 'G-JJDC6WW0HV',
   
-  // Configuration de sécurité (relaxée pour le développement)
-  enableSecurityHeaders: true,
+  // Configuration de développement
+  enableMockMode: true, // Active le mode simulation pour éviter les erreurs CORS
   enableCSP: false, // Désactivé en développement pour faciliter le debug
   enableHSTS: false,
   
