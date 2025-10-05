@@ -36,11 +36,39 @@
   <!-- Fonts optimisées -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome avec preload -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+  <!-- Font Awesome - Chargement direct pour éviter les problèmes de déploiement -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <!-- Fallback CSS pour les icônes -->
+  <link rel="stylesheet" href="assets/css/fontawesome-fallback.css">
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Script pour détecter le chargement de Font Awesome -->
+  <script>
+    // Détecter quand Font Awesome est chargé
+    function checkFontAwesome() {
+      const testIcon = document.createElement('i');
+      testIcon.className = 'fas fa-envelope';
+      testIcon.style.position = 'absolute';
+      testIcon.style.left = '-9999px';
+      document.body.appendChild(testIcon);
+      
+      const computedStyle = window.getComputedStyle(testIcon, '::before');
+      const content = computedStyle.getPropertyValue('content');
+      
+      document.body.removeChild(testIcon);
+      
+      // Si Font Awesome est chargé, le content sera différent de "none"
+      if (content && content !== 'none' && content !== '""') {
+        document.body.classList.add('fontawesome-loaded');
+      }
+    }
+    
+    // Vérifier après le chargement de la page
+    window.addEventListener('load', checkFontAwesome);
+    
+    // Vérifier aussi après un délai pour les connexions lentes
+    setTimeout(checkFontAwesome, 2000);
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJDC6WW0HV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
