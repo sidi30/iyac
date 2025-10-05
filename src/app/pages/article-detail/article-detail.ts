@@ -5,12 +5,11 @@ import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article.model';
 import { Observable } from 'rxjs';
 import { GoogleAnalyticsService } from '../../services/google-analytics.service';
-import { SanitizeHtmlPipe } from '../../pipes/sanitize-html.pipe';
 
 @Component({
   selector: 'app-article-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, SanitizeHtmlPipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './article-detail.html',
   styleUrls: ['./article-detail.scss']
 })
@@ -35,7 +34,7 @@ export class ArticleDetailComponent implements OnInit {
       // Tracking de la lecture d'article
       this.article$.subscribe(article => {
         if (article) {
-          this.googleAnalytics.trackArticleRead(article.id, article.title, article.category);
+          this.googleAnalytics.trackArticleRead(article.id, article.title);
           this.googleAnalytics.trackPageView(article.title, 'article');
         }
       });

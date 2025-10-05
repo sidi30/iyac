@@ -561,12 +561,12 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     if (this.isPlaying) {
       this.audioElement.nativeElement.pause();
       // Tracking de la pause
-      this.googleAnalytics.trackMediaInteraction('pause', this.audioItem.id, 'audio');
+        this.googleAnalytics.trackMediaInteraction(this.audioItem.id, 'pause');
     } else {
       this.audioElement.nativeElement.play();
       // Tracking du démarrage de lecture
-      this.googleAnalytics.trackMediaPlay(this.audioItem.id, this.audioItem.title, 'audio');
-      this.googleAnalytics.trackMediaInteraction('play', this.audioItem.id, 'audio');
+      this.googleAnalytics.trackMediaPlay(this.audioItem.id, 'audio');
+      this.googleAnalytics.trackMediaInteraction(this.audioItem.id, 'play');
     }
   }
 

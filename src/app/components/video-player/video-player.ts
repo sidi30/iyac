@@ -698,12 +698,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     if (this.isPlaying) {
       this.videoElement.nativeElement.pause();
       // Tracking de la pause
-      this.googleAnalytics.trackMediaInteraction('pause', this.videoItem.id, 'video');
+        this.googleAnalytics.trackMediaInteraction(this.videoItem.id, 'pause');
     } else {
       this.videoElement.nativeElement.play();
       // Tracking du démarrage de lecture
-      this.googleAnalytics.trackMediaPlay(this.videoItem.id, this.videoItem.title, 'video');
-      this.googleAnalytics.trackMediaInteraction('play', this.videoItem.id, 'video');
+      this.googleAnalytics.trackMediaPlay(this.videoItem.id, 'video');
+      this.googleAnalytics.trackMediaInteraction(this.videoItem.id, 'play');
     }
   }
 

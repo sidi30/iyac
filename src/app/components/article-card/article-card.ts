@@ -2,12 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Article } from '../../models/article.model';
-import { SanitizeHtmlPipe } from '../../pipes/sanitize-html.pipe';
 
 @Component({
   selector: 'app-article-card',
   standalone: true,
-  imports: [CommonModule, RouterModule, SanitizeHtmlPipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './article-card.html',
   styleUrls: ['./article-card.scss']
 })
