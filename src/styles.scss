@@ -4,66 +4,58 @@
 /* Fallback CSS pour les icônes Font Awesome */
 /* Assure que les icônes s'affichent même si Font Awesome ne se charge pas immédiatement */
 
-/* Icônes de base avec fallback Unicode */
-.fas.fa-envelope::before { content: "✉"; }
-.fas.fa-calendar::before { content: "📅"; }
-.fas.fa-clock::before { content: "🕐"; }
-.fas.fa-user::before { content: "👤"; }
-.fas.fa-star::before { content: "⭐"; }
-.fas.fa-bolt::before { content: "⚡"; }
-.fas.fa-play::before { content: "▶"; }
-.fas.fa-pause::before { content: "⏸"; }
-.fas.fa-stop::before { content: "⏹"; }
-.fas.fa-download::before { content: "⬇"; }
-.fas.fa-expand::before { content: "⛶"; }
-.fas.fa-search::before { content: "🔍"; }
-.fas.fa-arrow-left::before { content: "←"; }
-.fas.fa-arrow-right::before { content: "→"; }
-.fas.fa-chevron-up::before { content: "↑"; }
-.fas.fa-chevron-down::before { content: "↓"; }
-.fas.fa-home::before { content: "🏠"; }
-.fas.fa-share::before { content: "📤"; }
-.fas.fa-print::before { content: "🖨"; }
-.fas.fa-exclamation-triangle::before { content: "⚠"; }
-.fas.fa-exclamation-circle::before { content: "⚠"; }
-.fas.fa-info-circle::before { content: "ℹ"; }
-.fas.fa-tools::before { content: "🔧"; }
-.fas.fa-balance-scale::before { content: "⚖"; }
-.fas.fa-redo::before { content: "🔄"; }
-.fas.fa-map-marker-alt::before { content: "📍"; }
-.fas.fa-phone::before { content: "📞"; }
-.fas.fa-file-pdf::before { content: "📄"; }
-.fas.fa-newspaper::before { content: "📰"; }
-.fas.fa-video::before { content: "🎥"; }
-.fas.fa-podcast::before { content: "🎙"; }
-.fas.fa-microphone::before { content: "🎤"; }
-.fas.fa-cog::before { content: "⚙"; }
-.fas.fa-paper-plane::before { content: "✈"; }
-.fas.fa-shield-alt::before { content: "🛡"; }
-.fas.fa-user-tie::before { content: "👔"; }
-.fas.fa-quote-left::before { content: "❝"; }
-.fas.fa-quote-right::before { content: "❞"; }
-.fas.fa-copy::before { content: "📋"; }
-.fas.fa-refresh::before { content: "🔄"; }
+/* Icônes de base avec fallback Unicode - seulement si Font Awesome n'est pas chargé */
+body:not(.fontawesome-loaded) .fas.fa-envelope::before { content: "✉"; }
+body:not(.fontawesome-loaded) .fas.fa-calendar::before { content: "📅"; }
+body:not(.fontawesome-loaded) .fas.fa-clock::before { content: "🕐"; }
+body:not(.fontawesome-loaded) .fas.fa-user::before { content: "👤"; }
+body:not(.fontawesome-loaded) .fas.fa-star::before { content: "⭐"; }
+body:not(.fontawesome-loaded) .fas.fa-bolt::before { content: "⚡"; }
+body:not(.fontawesome-loaded) .fas.fa-play::before { content: "▶"; }
+body:not(.fontawesome-loaded) .fas.fa-pause::before { content: "⏸"; }
+body:not(.fontawesome-loaded) .fas.fa-stop::before { content: "⏹"; }
+body:not(.fontawesome-loaded) .fas.fa-download::before { content: "⬇"; }
+body:not(.fontawesome-loaded) .fas.fa-expand::before { content: "⛶"; }
+body:not(.fontawesome-loaded) .fas.fa-search::before { content: "🔍"; }
+body:not(.fontawesome-loaded) .fas.fa-arrow-left::before { content: "←"; }
+body:not(.fontawesome-loaded) .fas.fa-arrow-right::before { content: "→"; }
+body:not(.fontawesome-loaded) .fas.fa-chevron-up::before { content: "↑"; }
+body:not(.fontawesome-loaded) .fas.fa-chevron-down::before { content: "↓"; }
+body:not(.fontawesome-loaded) .fas.fa-home::before { content: "🏠"; }
+body:not(.fontawesome-loaded) .fas.fa-share::before { content: "📤"; }
+body:not(.fontawesome-loaded) .fas.fa-print::before { content: "🖨"; }
+body:not(.fontawesome-loaded) .fas.fa-exclamation-triangle::before { content: "⚠"; }
+body:not(.fontawesome-loaded) .fas.fa-exclamation-circle::before { content: "⚠"; }
+body:not(.fontawesome-loaded) .fas.fa-info-circle::before { content: "ℹ"; }
+body:not(.fontawesome-loaded) .fas.fa-tools::before { content: "🔧"; }
+body:not(.fontawesome-loaded) .fas.fa-balance-scale::before { content: "⚖"; }
+body:not(.fontawesome-loaded) .fas.fa-redo::before { content: "🔄"; }
+body:not(.fontawesome-loaded) .fas.fa-map-marker-alt::before { content: "📍"; }
+body:not(.fontawesome-loaded) .fas.fa-phone::before { content: "📞"; }
+body:not(.fontawesome-loaded) .fas.fa-file-pdf::before { content: "📄"; }
+body:not(.fontawesome-loaded) .fas.fa-newspaper::before { content: "📰"; }
+body:not(.fontawesome-loaded) .fas.fa-video::before { content: "🎥"; }
+body:not(.fontawesome-loaded) .fas.fa-podcast::before { content: "🎙"; }
+body:not(.fontawesome-loaded) .fas.fa-microphone::before { content: "🎤"; }
+body:not(.fontawesome-loaded) .fas.fa-cog::before { content: "⚙"; }
+body:not(.fontawesome-loaded) .fas.fa-paper-plane::before { content: "✈"; }
+body:not(.fontawesome-loaded) .fas.fa-shield-alt::before { content: "🛡"; }
+body:not(.fontawesome-loaded) .fas.fa-user-tie::before { content: "👔"; }
+body:not(.fontawesome-loaded) .fas.fa-quote-left::before { content: "❝"; }
+body:not(.fontawesome-loaded) .fas.fa-quote-right::before { content: "❞"; }
+body:not(.fontawesome-loaded) .fas.fa-copy::before { content: "📋"; }
+body:not(.fontawesome-loaded) .fas.fa-refresh::before { content: "🔄"; }
 
 /* Icônes de thème */
-.fas.fa-sun::before { content: "☀"; }
-.fas.fa-moon::before { content: "🌙"; }
-.fas.fa-adjust::before { content: "⚖"; }
+body:not(.fontawesome-loaded) .fas.fa-sun::before { content: "☀"; }
+body:not(.fontawesome-loaded) .fas.fa-moon::before { content: "🌙"; }
+body:not(.fontawesome-loaded) .fas.fa-adjust::before { content: "⚖"; }
 
 /* Icônes sociales */
-.fab.fa-facebook-f::before { content: "📘"; }
-.fab.fa-twitter::before { content: "🐦"; }
-.fab.fa-whatsapp::before { content: "💬"; }
-.fab.fa-youtube::before { content: "📺"; }
-
-/* Masquer les fallbacks quand Font Awesome est chargé */
-.fontawesome-loaded .fas::before,
-.fontawesome-loaded .far::before,
-.fontawesome-loaded .fab::before,
-.fontawesome-loaded .fal::before {
-  content: "" !important;
-}
+body:not(.fontawesome-loaded) .fab.fa-facebook-f::before { content: "📘"; }
+body:not(.fontawesome-loaded) .fab.fa-twitter::before { content: "🐦"; }
+body:not(.fontawesome-loaded) .fab.fa-whatsapp::before { content: "💬"; }
+body:not(.fontawesome-loaded) .fab.fa-youtube::before { content: "📺"; }
 
 :root {
   /* Palette de couleurs moderne et vibrante */
