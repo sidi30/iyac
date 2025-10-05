@@ -48,6 +48,14 @@
 
       <!-- Boutons d'action -->
       <div class="d-flex align-items-center gap-2">
+        <!-- Bouton Dark Mode -->
+        <button 
+          class="btn btn-outline-secondary btn-sm theme-toggle" 
+          (click)="toggleTheme()"
+          [title]="getThemeTitle()">
+          <i [class]="getThemeIcon()"></i>
+        </button>
+        
         <!-- Bouton newsletter -->
         <button class="btn btn-outline-primary btn-sm" (click)="openNewsletterModal()">
           <i class="fas fa-envelope me-1"></i>

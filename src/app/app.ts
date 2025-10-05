@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,10 @@ export class AppComponent implements OnInit {
   showScrollButton = false;
   currentYear = new Date().getFullYear();
 
-  constructor() {}
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit() {
-    // Initialisation simple
+    // Le thème est maintenant géré par le service ThemeService
   }
 
   @HostListener('window:scroll')
