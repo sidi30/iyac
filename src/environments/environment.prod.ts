@@ -4,7 +4,7 @@ export const environment = {
   
   // URLs et clés API - À configurer selon votre environnement
   googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzQhp69hgYM9qEfxScvamEGrJ3iYL_1unpoghHUDRhBA18ZR5u0wG-afPYnb2dy7re8rQ/exec',
-  resendApiKey: '', // À remplir avec votre clé Resend
+  resendApiKey: 're_gzcoEFpe_HrByJC6WDUUQVY6NraZLCPsT', // À remplir avec votre clé Resend
   fromEmail: 'noreply@liberteiyac.com', // À remplir avec votre domaine
   
   // Google Analytics

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { ArticleCardComponent } from '../../components/article-card/article-card';
 import { LeaderShowcaseComponent } from '../../components/leader-showcase/leader-showcase';
+import { NewsletterSignupComponent } from '../../components/newsletter-signup/newsletter-signup';
 import { Article } from '../../models/article.model';
 import { Observable } from 'rxjs';
 
@@ -18,7 +19,7 @@ interface MediaCard {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, ArticleCardComponent, LeaderShowcaseComponent],
+  imports: [CommonModule, RouterModule, ArticleCardComponent, LeaderShowcaseComponent, NewsletterSignupComponent],
   templateUrl: './home.html',
   styleUrls: ['./home.scss']
 })

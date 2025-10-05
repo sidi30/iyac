@@ -4,8 +4,8 @@ export const environment = {
   
   // URLs et clés API pour le développement
   googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzQhp69hgYM9qEfxScvamEGrJ3iYL_1unpoghHUDRhBA18ZR5u0wG-afPYnb2dy7re8rQ/exec',
-  resendApiKey: '', // À remplir avec votre clé Resend de test
-  fromEmail: 'noreply@liberteiyac.com',
+  resendApiKey: 're_gzcoEFpe_HrByJC6WDUUQVY6NraZLCPsT', // Clé de test pour le développement
+  fromEmail: 'test@liberteiyac.com',
   
   // Google Analytics (ID de test)
   gaTrackingId: 'G-JJDC6WW0HV',
