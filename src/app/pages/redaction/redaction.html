@@ -45,14 +45,25 @@
         </button>
       </div>
 
-      <div class="iframe-container">
-        <iframe
-          [src]="redactionUrl"
-          title="Espace de rédaction"
-          class="redaction-iframe"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+      <div class="redaction-info">
+        <div class="info-card">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2>Authentification réussie !</h2>
+          <p>L'espace de rédaction s'est ouvert dans un nouvel onglet.</p>
+          <p class="text-muted">Si l'onglet ne s'est pas ouvert, cliquez sur le bouton ci-dessous :</p>
+          
+          <button (click)="openInNewTab()" class="btn-access">
+            <i class="fas fa-external-link-alt me-2"></i>
+            Ouvrir l'espace de rédaction
+          </button>
+
+          <div class="info-note">
+            <i class="fas fa-info-circle me-2"></i>
+            <span>Pour des raisons de sécurité, le contenu s'ouvre dans un nouvel onglet.</span>
+          </div>
+        </div>
       </div>
     </div>
   }

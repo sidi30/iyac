@@ -24,10 +24,11 @@ La page **Rédaction** est un espace protégé par mot de passe qui permet d'acc
 - Design responsive (mobile-friendly)
 
 ### Espace rédaction
-- Affichage du contenu via iframe
+- Ouverture automatique dans un nouvel onglet
+- Page de confirmation avec bouton de réouverture
 - Bouton de déconnexion
 - Header personnalisé avec dégradé
-- Intégration complète en plein écran
+- Évite les problèmes d'iframe bloqué (X-Frame-Options)
 
 ### Sécurité
 - Le mot de passe est stocké côté service (non visible dans le DOM)
@@ -77,7 +78,8 @@ Un lien "🔒 Rédaction" a été ajouté dans le menu principal du site.
    - Cliquer sur "Se connecter"
 
 3. **Utiliser l'espace**
-   - Le contenu de l'espace rédaction s'affiche
+   - Un nouvel onglet s'ouvre automatiquement avec l'espace rédaction
+   - Si bloqué par le navigateur, cliquer sur le bouton "Ouvrir l'espace de rédaction"
    - Travailler normalement sur les PDF
    - La session reste active pendant 24h
 
@@ -162,8 +164,19 @@ Pour toute question ou problème :
 - Vérifier que l'URL externe est accessible
 - Vérifier les logs du navigateur (F12)
 - Vérifier la configuration des environments
+- Si le navigateur bloque l'ouverture automatique, autoriser les popups pour le site
+
+## Résolution du problème d'iframe
+
+Le contenu ne s'affiche plus dans un iframe pour éviter les erreurs "Contenu bloqué" causées par les en-têtes de sécurité (`X-Frame-Options`) du site externe. 
+
+**Solution actuelle** : Ouverture automatique dans un nouvel onglet
+- ✅ Évite les restrictions de sécurité
+- ✅ Meilleure expérience utilisateur
+- ✅ Pas de problème CORS
+- ✅ Fonctionne sur tous les navigateurs
 
 ---
 
-**Note importante** : Cette page affiche le contenu de `https://sidi30.github.io/pdf-iyac/` via un iframe. Assurez-vous que ce site autorise l'intégration via iframe (pas de restriction X-Frame-Options).
+**Note importante** : Cette page ouvre le contenu de `https://sidi30.github.io/pdf-iyac/` dans un nouvel onglet après authentification. L'URL reste masquée dans la barre d'adresse principale (`/redaction`).
 
