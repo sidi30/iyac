@@ -1,0 +1,60 @@
+<div class="redaction-container">
+  @if (!isAuthenticated()) {
+    <!-- Formulaire de connexion -->
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>Espace Rédaction</h1>
+          <p>Accès réservé aux membres autorisés</p>
+        </div>
+
+        <form (ngSubmit)="onSubmit($event)" class="login-form">
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+              placeholder="Entrez votre mot de passe"
+              class="form-input"
+              required
+              autofocus
+            />
+          </div>
+
+          @if (errorMessage()) {
+            <div class="error-message">
+              {{ errorMessage() }}
+            </div>
+          }
+
+          <button type="submit" class="btn-login">
+            Se connecter
+          </button>
+        </form>
+      </div>
+    </div>
+  } @else {
+    <!-- Contenu de l'espace rédaction -->
+    <div class="redaction-content">
+      <div class="redaction-header">
+        <h1>Espace Rédaction</h1>
+        <button (click)="logout()" class="btn-logout">
+          Se déconnecter
+        </button>
+      </div>
+
+      <div class="iframe-container">
+        <iframe
+          [src]="redactionUrl"
+          title="Espace de rédaction"
+          class="redaction-iframe"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  }
+</div>
+

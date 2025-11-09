@@ -26,4 +26,7 @@ export const environment = {
   maxRequestSize: '10mb',
   rateLimitWindow: 15 * 60 * 1000, // 15 minutes
   rateLimitMax: 100, // 100 requêtes par fenêtre
+  
+  // URL de l'espace rédaction
+  redactionUrl: 'https://sidi30.github.io/pdf-iyac/',
 };
